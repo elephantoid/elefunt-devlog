@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[IBM C:louders] 11월 미션! Watson Studio for ML | elefunt-devlog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[IBM C:louders] 11월 미션! Watson Studio for ML" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="IBM Cloud로 머신러닝 2" />
+<meta property="og:description" content="IBM Cloud로 머신러닝 2" />
+<link rel="canonical" href="https://elephantoid.github.io/elefunt-devlog/ibm%20clouders/2020/11/23/Watson_Studio.html" />
+<meta property="og:url" content="https://elephantoid.github.io/elefunt-devlog/ibm%20clouders/2020/11/23/Watson_Studio.html" />
+<meta property="og:site_name" content="elefunt-devlog" />
+<meta property="og:image" content="https://elephantoid.github.io/elefunt-devlog/images/ibm_clouders.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-23T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"IBM Cloud로 머신러닝 2","url":"https://elephantoid.github.io/elefunt-devlog/ibm%20clouders/2020/11/23/Watson_Studio.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://elephantoid.github.io/elefunt-devlog/ibm%20clouders/2020/11/23/Watson_Studio.html"},"headline":"[IBM C:louders] 11월 미션! Watson Studio for ML","dateModified":"2020-11-23T00:00:00-06:00","datePublished":"2020-11-23T00:00:00-06:00","image":"https://elephantoid.github.io/elefunt-devlog/images/ibm_clouders.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/elefunt-devlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://elephantoid.github.io/elefunt-devlog/feed.xml" title="elefunt-devlog" /><link rel="shortcut icon" type="image/x-icon" href="/elefunt-devlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/elefunt-devlog/">elefunt-devlog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/elefunt-devlog/about/">About Me</a><a class="page-link" href="/elefunt-devlog/gitInfo/">gitInfo</a><a class="page-link" href="/elefunt-devlog/sample/">sample</a><a class="page-link" href="/elefunt-devlog/search/">Search</a><a class="page-link" href="/elefunt-devlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[IBM C:louders] 11월 미션! Watson Studio for ML</h1><p class="page-description">IBM Cloud로 머신러닝 2</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-11-23T00:00:00-06:00" itemprop="datePublished">
+        Nov 23, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/elefunt-devlog/categories/#IBM Clouders">IBM Clouders</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img src="/elefunt-devlog/images/hexo/head_m.PNG" alt="" /></p>
+
+<h1 id="11월-미션-ibm-cloud-관련-기술-포스팅">11월 미션 IBM Cloud 관련 기술 포스팅</h1>
+
+<p>IBM Cloud에 매우 다양한 기술들이 있습니다.</p>
+
+<p>그 중에 할만한게 뭐 없을까 IBM 블로그를 둘러보다가 …<br />
+“공개의료데이터 분석을 통해 데이터 통찰력 향상하기”가 있었습니다.<br />
+저번 달에 MAIC에서 주관하는 심박수를 활용하여 수술중 저혈압을 예측하는 대회가 있었는데요
+그 때가 떠오르면서 이번엔 어떤 의료 데이터인지 궁금해졌습니다.</p>
+
+<p>그래서 이번 주제는 <strong>“Watson Studio for ML”</strong>입니다</p>
+
+<h1 id="요약">요약</h1>
+
+<p>오피오이드(opioid) 과다 복용에 의한 사망, 처방자 유형, 처방전과 같은 Kagle 데이터를 기반으로 scikit-learn과 Python (IBM Watson Studio)을 사용하여 오피오이드(opioid) 처방을 예측합니다. 이 패턴을 통해 Watson Studio 노트북에서 데이터를 탐색하고, Pixie Dust를 사용해서 여러가지 초기 결과를 시각화 할 수 있습니다. 초기 탐색 후에는 scikit-learn을 사용하여 여러 모델을 훈련하고 오피오이드(opioid) 처방을 가장 정확하게 예측할 수있는 방법을 파악합니다.</p>
+
+<h1 id="workflow">WorkFlow</h1>
+
+<p><img width="500" alt="flow" src="https://user-images.githubusercontent.com/70086728/99982267-b3161500-2ded-11eb-8658-877a2dca7fd2.png" /></p>
+
+<ol>
+  <li>Watson Studio 서비스에 로그인하십시오.</li>
+  <li>Watson Studio에 데이터 자산으로 데이터를 업로드하십시오.</li>
+  <li>Watson Studio에서 노트북을 시작하고 이전에 작성한 데이터 자산을 입력하십시오.</li>
+  <li>Pixie Dust로 데이터 시각화를 생성하십시오.</li>
+  <li>pandas로 데이터를 탐색하십시오.</li>
+  <li>scikit-learn으로 기계 학습 모델을 훈련시킵니다.</li>
+  <li>예측 성능을 평가하십시오.</li>
+</ol>
+
+<h2 id="watson-studio-to-make-a-new-project">Watson Studio to make a New Project</h2>
+
+<h3 id="new-project">New Project</h3>
+
+<p><img width="850" alt="watson-1" src="https://user-images.githubusercontent.com/70086728/99982506-fcfefb00-2ded-11eb-8b67-2e1bb4812db4.PNG" /></p>
+
+<p>먼저 Watson Studio로 접속하신 후 빨간 네모를 누르시면 새로운 프로젝트를 생성할 수 있습니다.</p>
+
+<blockquote>
+  <p>notice: 블로그에 있는 참조 페이지는 오래되서 지금과 약간 다를 수 있습니다.</p>
+</blockquote>
+
+<p><img width="850" alt="watson-2" src="https://user-images.githubusercontent.com/70086728/99982794-5830ed80-2dee-11eb-82c4-1e2a189f4fa3.PNG" /></p>
+
+<p>두 가지 중에서 저는 어떤한 Form도 갖고 있지 않기 때문에 빈 프로젝트를 생성했습니다.</p>
+
+<h3 id="load-data">Load Data</h3>
+
+<p><img width="942" alt="data" src="https://user-images.githubusercontent.com/70086728/99983186-e0af8e00-2dee-11eb-9c92-52b96421bf2c.PNG" /></p>
+
+<p>Asset(자산)카테고리의 우측에 보시면 데이터를 로드할 수 있는 곳이 있습니다.<br />
+Drop방식이라 편리해요!</p>
+
+<p>그렇게 추가를 하시면 Asset에 데이터를 확인할 수 있습니다.</p>
+
+<p><img width="773" alt="asset_data" src="https://user-images.githubusercontent.com/70086728/99983484-3f750780-2def-11eb-995d-14b60e69aa38.PNG" /></p>
+
+<h3 id="new-notebook">New Notebook</h3>
+
+<p>사실 노트북을 불러오는 방식은 두 가지가 있습니다.</p>
+
+<ol>
+  <li>블로그 내용대로 Github에서 가져온다.</li>
+  <li>로컬 ~.ipynb 파일을 로드한다.</li>
+</ol>
+
+<p>저는 두번째 방식을 택했습니다.</p>
+
+<p><img width="771" alt="new_notebook-1" src="https://user-images.githubusercontent.com/70086728/99983545-5582c800-2def-11eb-9999-d0e3d8c707d4.PNG" /></p>
+
+<p>빨간 네모에 로컬에 있던 test.ipynb를 추가했습니다.<br />
+python 설정환경은 여러가지가 있는데 그 중에 필요하신 것을 선택하세요.</p>
+
+<p>마지막에 Create를 누르시면</p>
+
+<p><img width="600" alt="notebook-1" src="https://user-images.githubusercontent.com/70086728/99983648-777c4a80-2def-11eb-9a29-cb5fbfe5b0b2.PNG" /></p>
+
+<h1 id="kaggle">Kaggle</h1>
+
+<p><img width="720" alt="kaggle-1" src="https://user-images.githubusercontent.com/70086728/99983928-d5109700-2def-11eb-8608-08b667633727.PNG" /></p>
+
+<p>이제 데이터를 찾으러 Kaggle에 접속합니다.<br />
+Data 탭을 누르시고 검색하시면 바로 나와요!</p>
+
+<p><img width="583" alt="kaggle_data-1" src="https://user-images.githubusercontent.com/70086728/99983938-d772f100-2def-11eb-83a5-c5365efa257a.PNG" /></p>
+
+<p>캐글의 장점!!! 미리 데이터셋이 어떤 컬럼과 변수명으로 되어있는지 심지어 시각화까지 해줍니다</p>
+
+<h1 id="machine-learning">Machine Learning</h1>
+
+<p>사실 처음에 Asset에 분명 데이터를 추가했는데 파일 경로를 모르겠어서 매우 당황스러웠습니다…</p>
+
+<p>진짜 !ls를 해도 아무것도 안보이고 막막하던 차에 엄청난 기능을 알게 되었습니다.</p>
+
+<p><img width="955" alt="load_dataset_in_notebook" src="https://user-images.githubusercontent.com/70086728/99984727-caa2cd00-2df0-11eb-8568-076b2e7aae5e.PNG" /></p>
+
+<p>우측 상단에 있는 빨간 네모를 클릭하시면 옆에 저렇게 새로운 창이 보입니다.</p>
+
+<p>그리고 Pandas DataFrame을 눌러주시면!!</p>
+
+<p><img width="936" alt="res" src="https://user-images.githubusercontent.com/70086728/99984854-ec9c4f80-2df0-11eb-920d-fcf4a8742294.PNG" /></p>
+
+<p>자동으로 Pandas로 데이터를 읽고 .head()까지 해줍니다.<br />
+처음에 너무 신기해서 몇 번을 다시 해봤는지 모르겠네요.</p>
+
+<p>이렇게 데이터를 로드했으니 Kaggle Notebook을 참고하여 학습했습니다.</p>
+
+<p><img width="849" alt="accuracy" src="https://user-images.githubusercontent.com/70086728/99985010-1e151b00-2df1-11eb-872b-fd9869777848.PNG" /></p>
+
+<p>Accuracy는 이렇게 나왔고 그 높은 3개를 택해서 plot도 작게 그려봤습니다.<br />
+*In sample = train set, Out sample = test set</p>
+
+<h3 id="in-sample">In Sample</h3>
+
+<p><img width="851" alt="plt1" src="https://user-images.githubusercontent.com/70086728/99985205-43098e00-2df1-11eb-80ef-f93fcf540eff.PNG" /></p>
+
+<h3 id="out-sample">Out Sample</h3>
+
+<p><img width="856" alt="plt2" src="https://user-images.githubusercontent.com/70086728/99985242-456be800-2df1-11eb-8917-a660e314f5fe.PNG" /></p>
+
+<h1 id="후기">후기</h1>
+
+<p>처음으로 IBM Cloud를 활용해 기계학습을 해봤습니다. 제가 선택한 python 문제인지는 모르겠습니다만 Colab에서는 얼마나 또 성능이 차이날지 확인은 해보고 싶어집니다.<br />
+처음에 NoteBook안에서 파일 경로를 몰라서 엄청 해맸던게 아휴… 그런데 또 그런 꿀기능이 저런 곳에 숨어있었다니 생각지도 못했습니다. 천천히 하나씩 해보면서 어디까지 가능한가 궁금하기도 합니다.</p>
+
+<p>-끝-</p>
+
+<h1 id="references">References</h1>
+
+<p><a href="https://developer.ibm.com/ko/patterns/analyze-open-medical-data-sets-to-gain-insights//">IBM기술블로그</a></p>
+
+<p><a href="https://www.kaggle.com/apryor6/us-opiate-prescriptions/notebooks">DATA받는곳(Kaggle)</a></p>
+
+<p><a href="https://www.kaggle.com/jiashenliu/quick-and-dirty-attempt-on-voting-classifier">참고한NoteBook</a></p>
+
+<p><a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/load-and-access-data.html">노트북에서데이터로드및액세스</a></p>
+
+<p><a href="https://cloud.ibm.com/docs/Db2whc?topic=Db2whc-load_local">Loading data from your local system</a></p>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="elephantoid/elefunt-devlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/elefunt-devlog/ibm%20clouders/2020/11/23/Watson_Studio.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/elefunt-devlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/elefunt-devlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
