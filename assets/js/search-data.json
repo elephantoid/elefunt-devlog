@@ -40,7 +40,9 @@
   
 
   
-      ,"page3": {
+
+  
+      ,"page4": {
           "title": "sample",
           "content": "sample . sample | sample2 | Hello | .",
           "url": "https://elephantoid.github.io/elefunt-devlog/sample/",
@@ -70,7 +72,7 @@
   
 
   
-      ,"page11": {
+      ,"page12": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://elephantoid.github.io/elefunt-devlog/robots.txt",
