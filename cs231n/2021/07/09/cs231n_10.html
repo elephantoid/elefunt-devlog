@@ -115,7 +115,7 @@ RNN(Recurrent Neural Network)의 기존 구조부터 backprop시 문제를 해�
 
 <p>컴퓨터에서 오늘 볶음밥을 먹어야한다는 것을 예측한 것을 one_hot vector로 표현하자면 [0,0,1]이 됩니다.</p>
 
-<p><img src="/\_posts/cs231n/cs231n-10/c1.PNG" /></p>
+<p><img src="/_posts/cs231n/cs231n-10/c1.PNG" /></p>
 
 <p><br />
 저희가 지금 까지 배워왔던 여러 가지 구조들이 있지만 공통적인 것이 하나 있습니다. 하나의 입력을 받아 하나의 출력을 내보냈습니다.(좌측 one-to-one)
@@ -133,11 +133,11 @@ RNN은 입력값이 여러 개 일수도 있고 출력값이 여러 개 일 수�
 <p>문장이나 단어들은 전부 길이가 다르고, 영상 데이터는 프레임의 연속이기에 시퀀스가 제각각입니다..<br />
 RNN은 이렇게 입/출력이 가변길이를 지닌 데이터에 강점이 있습니다.</p>
 
-<p><img src="/\_posts/cs231n/cs231n-10/c1-1.PNG" /></p>
+<p><img src="_posts/cs231n/cs231n-10/c1-1.PNG" /></p>
 
 <p>또한 입/출력이 고정된 길이라 해도 ‘가변 과정(Processing)’인 경우에 매우 유용합니다.</p>
 
-<p><img src="/\_posts/cs231n/cs231n-10/c2.PNG" /></p>
+<p><img src="/_posts/cs231n/cs231n-10/c2.PNG" /></p>
 
 <p><br /></p>
 
@@ -154,7 +154,7 @@ RNN은 이렇게 입/출력이 가변길이를 지닌 데이터에 강점이 있
   <p>Notice: set의 parameter와 가중치는 모든 time step에서 똑같은 것을 반복해서 사용합니다.</p>
 </blockquote>
 
-<p><img src="/\_posts/cs231n/cs231n-10/c3.PNG" /></p>
+<p><img src="/_posts/cs231n/cs231n-10/c3.PNG" /></p>
 
 <p>이제 수식을 통해 Vanlila RNN을 보겠습니다.
 Weight는 총 3개입니다.</p>
@@ -168,12 +168,12 @@ Weight는 총 3개입니다.</p>
 <p>아까 말씀드렸듯이 이 가중치는 변하지 않고 사용됩니다.<br />
 비선형성(non-linearity)을 위해 tanh 함수를 사용한다</p>
 
-<p><img src="/\_posts/cs231n/cs231n-10/c4.PNG" /></p>
+<p><img src="/cs231n/cs231n-10/c4.PNG" /></p>
 
 <p>방금 봤던 Vanila RNN을 옆으로 쭉 이어붙이는 모습입니다. 이렇게 그리면 공간을 너무 차지하니까 수식에서 봤던 되돌리기 표시를 사용합니다.</p>
 
-<p><img src="/\_posts/cs231n/cs231n-10/c9.PNG" />
-<img src="/\_posts/cs231n/cs231n-10/c10.png" /></p>
+<p><img src="cs231n/cs231n-10/c9.PNG" />
+<img src="/_posts/cs231n/cs231n-10/c10.png" /></p>
 
 <p>각각의 히든레이어에서 어떤 작업을 하고 있는지 확인해 본 결과입니다. <code class="language-plaintext highlighter-rouge">""</code>를 학습하기도하고 단어의 개수를 세고 코드인 경우에는 if문, for문을 학습합니다.</p>
 
@@ -181,7 +181,7 @@ Weight는 총 3개입니다.</p>
 
 <p>Image Captioning이란 하나의 사진을 보고 이 사진이 무엇인지 설명하는 문장을 만들어 내는 딥러닝 모델을 말한다.</p>
 
-<p><img src="/\_posts/cs231n/cs231n-10/c11.PNG" /></p>
+<p><img src="/_posts/cs231n/cs231n-10/c11.PNG" /></p>
 
 <p>CNN은 요약된 이미지정보가 들어있는 Vector를 출력합니다 이 Vector가 RNN의 초기 Step의 입력으로 들어가게 됩니다<br />
 그러면 RNN은 Caption에 사용할 문자들을 하나씩 만들어냅니다</p>
