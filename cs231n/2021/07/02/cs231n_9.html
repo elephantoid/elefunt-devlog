@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[cs231n] 9강 리뷰 | elefunt-devlog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[cs231n] 9강 리뷰" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="CNN Architectures AlexNet, VGG, GoogleNet, ResNet etc." />
+<meta property="og:description" content="CNN Architectures AlexNet, VGG, GoogleNet, ResNet etc." />
+<link rel="canonical" href="https://elephantoid.github.io/elefunt-devlog/cs231n/2021/07/02/cs231n_9.html" />
+<meta property="og:url" content="https://elephantoid.github.io/elefunt-devlog/cs231n/2021/07/02/cs231n_9.html" />
+<meta property="og:site_name" content="elefunt-devlog" />
+<meta property="og:image" content="https://elephantoid.github.io/elefunt-devlog/images/cs231n/cs231n-9.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-02T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"CNN Architectures AlexNet, VGG, GoogleNet, ResNet etc.","url":"https://elephantoid.github.io/elefunt-devlog/cs231n/2021/07/02/cs231n_9.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://elephantoid.github.io/elefunt-devlog/cs231n/2021/07/02/cs231n_9.html"},"headline":"[cs231n] 9강 리뷰","dateModified":"2021-07-02T00:00:00-05:00","datePublished":"2021-07-02T00:00:00-05:00","image":"https://elephantoid.github.io/elefunt-devlog/images/cs231n/cs231n-9.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/elefunt-devlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://elephantoid.github.io/elefunt-devlog/feed.xml" title="elefunt-devlog" /><link rel="shortcut icon" type="image/x-icon" href="/elefunt-devlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/elefunt-devlog/">elefunt-devlog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/elefunt-devlog/about/">About Me</a><a class="page-link" href="/elefunt-devlog/gitInfo/">gitInfo</a><a class="page-link" href="/elefunt-devlog/sample/">sample</a><a class="page-link" href="/elefunt-devlog/search/">Search</a><a class="page-link" href="/elefunt-devlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[cs231n] 9강 리뷰</h1><p class="page-description">CNN Architectures AlexNet, VGG, GoogleNet, ResNet etc.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-07-02T00:00:00-05:00" itemprop="datePublished">
+        Jul 2, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/elefunt-devlog/categories/#cs231n">cs231n</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="contents">contents</h1>
+
+<p><a href="https://www.youtube.com/watch?v=DAOcjicFr1Y&amp;t=520s"><img src="http://img.youtube.com/vi/DAOcjicFr1Y/0.jpg" alt="cs231n 9강 유튜브" /></a></p>
+
+<h2 id="main">Main</h2>
+
+<ul>
+  <li>Lenet</li>
+  <li>AlexNet</li>
+  <li>VGG</li>
+  <li>GoogleNet</li>
+  <li>ResNet</li>
+</ul>
+
+<h2 id="sub">Sub</h2>
+
+<ul>
+  <li>NiN (Network in Network)</li>
+  <li>Wide ResNet</li>
+  <li>ResNeXT</li>
+  <li>Stochastic Depth</li>
+  <li>DenseNet</li>
+  <li>FractalNet</li>
+  <li>SqueezeNet</li>
+</ul>
+
+<h1 id="lenet">LeNet</h1>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c1.PNG" alt="" /></p>
+
+<p>처음으로 볼 구조는 1998년에 나온 모델 LeNet입니다.<br />
+<strong>CONV-POOL-CONV-POOL-FC-FC</strong><br />
+매우 간단한 구조를 가졌습니다.<br />
+직관적으로 이해하기도 쉽습니다.</p>
+
+<h1 id="alexnet">AlexNet</h1>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c2.PNG" alt="" /></p>
+
+<p>두 번째로 볼 모델은 2012년에 나온 <strong>AlexNet</strong>입니다.<br />
+가장 큰 특징은 처음으로 큰 규모의 CNN을 적용했다는 점입니다.(또한 Image Classification task도 잘 수행했습니다.)</p>
+
+<p><strong><font size="5">Architecture</font></strong><br />
+구조는 CONV-POOL-NORM이 두번 반복되는 형태입니다.<br />
+5개의 CONV layer, 3개의 POOL layer, 3개 FC layer와 Norm layer가 있지만 LeNet과 크게 다르지 않습니다. 다만 더 깊어진 것이죠.</p>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c4.PNG" alt="" /></p>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c5.PNG" alt="" /></p>
+
+<p>추가적으로 차이점은 GPU 2개를 병렬적으로 사용했다는 것입니다. 이 때 당시의 GPU 메모리가 크지 않았기 때문에 2개를 한번에 사용했습니다.(입력후에 위 아래로 두개의 층을 확인할 수 있습니다. 또한 FC layer에서는 서로 정보를 주고 받습니다)</p>
+
+<p><strong><font size="5">파라미터 수</font></strong></p>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c3.PNG" alt="" /></p>
+
+<p><strong>1 layer</strong></p>
+
+<p>input data = (227 _ 227 _ 3) _ 그림에는 224인데 227의 오타<br />
+filter = (11 _ 11 * 3) &amp; filter 96개<br />
+Stride = 4<br />
+Output size = <strong><font size="3">(N - F)/stride + 1</font></strong> =&gt; (227 - 11)/4 + 1 = 55</p>
+
+<p>Output Volume = <strong>[55 * 55 * 96]</strong>
+Parameter = (11 x 11 x 3) x 96 =<strong>35K</strong></p>
+
+<blockquote>
+  <p>Note: 당시 메모리 용량이 3G밖에 안돼서 filter를 48개씩 데이터를 반으로 나눠서 넣었기 때문에 (55<em>55</em>48) x 2개 <br />
+Tip: 파라미터의 개수 : (업데이트해나갈 값, 가중치같은것) (11 _ 11 _ 3) _ 96 _ 모든필터안의 총 가중치 개수</p>
+</blockquote>
+
+<p><strong>2 layer</strong></p>
+
+<p>Input: 227x227x3 images<br />
+After CONV1: 55x55x96<br />
+Second layer (POOL1): 3x3 filters applied at stride 2<br />
+Output volume: 27x27x96 * (55-3)/2+1 = 27
+Parameter= 0!</p>
+
+<blockquote>
+  <p>Note: Pooling layer는 필터 안의 데이터 값 중 특정값(Average, Max 등)을 골라서 데이터사이즈만 변환시키기 때문에 가중치가 없다.</p>
+</blockquote>
+
+<p><strong><font size="5">특징</font></strong></p>
+
+<ol>
+  <li>
+    <p>비선형함수로 ReLU를 사용</p>
+  </li>
+  <li>
+    <p>regularization</p>
+  </li>
+</ol>
+
+<p>① Data augmentation(regularization의 일환으로 train data에 변형을 주는 것)을 많이 했다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> : flipping, jittering, clipping, color normalization 모두 적용
+</code></pre></div></div>
+
+<p>② Dropout 0.5</p>
+
+<ol>
+  <li>batch size 128</li>
+</ol>
+
+<p>Batch Normalization</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 딥러닝에서는 수많은 hiden layer를 거치면서, 초기데이터의 분포가 변하게 된다.
+
+- 학습데이터와 테스트데이터셋의 분포가 다르면 예측이 적절히 이루어지지 않듯이, 뉴럴네트워크에서도 layer마다 들어오는 데이터의 분포가 달라지게 되면 적절한 학습이 이루어지지 않는다.
+
+- 이를 해결하기 위해 매층마다 데이터의 분포를 재조절해주는 Batch Normalization이 등장한다.
+</code></pre></div></div>
+
+<p>Batch란 전체 데이터를 세트를 나눠서 학습시킬때, 은닉층에 들어온 데이터세트를 말한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 정규화 : 배치데이터의 평균, 분산을 이용해 정규화
+
+2. scale(범위조정), shift(이동) : scale을 위해 γ, shift에는 β값을 하이퍼파라미터로 사용하고, backpropagation을 통해 이 값들 또한 학습한다.
+</code></pre></div></div>
+
+<p><a href="bookandmed.tistory.com/54?category=1155428">출처</a></p>
+
+<ol>
+  <li>
+    <p>SGD Momentum 방식 Optimization</p>
+  </li>
+  <li>
+    <p>Learning rate 1e-2 에서 시작해 val accuracy가 더이상 올라가지 않는 학습지점부터 서서히 1e-10으로 내림</p>
+  </li>
+  <li>
+    <p>weight decay : L2
+Weight decay</p>
+  </li>
+</ol>
+
+<p>학습과정에서 과적합이 발생하며 모델의 복잡도가 너무 높아지면 학습데이터에 대한 loss값은 최소가 될 수 있지만, 실제 test data에서는 accuracy가 떨어진다. 특정 feature에 너무 큰 가중치가 업데이트 되지 않도록 loss function에 weight가 커질 경우에 대한 패널티를 부여하고, 주로 L1 또는 L2 regularization을 사용한다.</p>
+
+<ol>
+  <li>ensemble 기법 사용</li>
+</ol>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c6.PNG" alt="" /></p>
+
+<p>다음으로 볼 구조는 VGG와 GoogleNet입니다. 둘 다 2014년도에 나왔으면 나란히 VGG는 2등 GoogleNet이 1등을 거머줬습니다.</p>
+
+<h1 id="vgg">VGG</h1>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c7.PNG" alt="" /></p>
+
+<p>보시다시피 AlexNet과의 차이점은 더 깊어진 것이라고 볼 수 있습니다. 하지만 추가적으로 작은 필터값을 사용했다는 차이점이 있습니다</p>
+
+<p>8 layers (AlexNet)<br />
+-&gt; 16 - 19 layers (VGG16Net)<br />
+오직 3x3 CONV stride 1, pad 1 and 2x2 MAX POOL stride 2<br />
+11.7% top 5 error in ILSVRC’13(ZFNet)<br />
+-&gt; 7.3% top 5 error in ILSVRC’14</p>
+
+<font size="4">사전 지식: 수용영역(Receptive field)</font>
+
+<p><img src="https://t1.daumcdn.net/cfile/tistory/99448C335A014DD609" alt="" />
+<strong>수용영역</strong>이란 외부 자극이 전체 영향을 끼치는 것이 아니라 특정 영역에만 영향을 준다는 뜻이다. 손가락으로 몸의 여러 부분을 찔러 보았을 때 그것을 느낄 수 있는 범위가 제한적이라는 것을 생각하면 될 것이다. 그리고 어디를 찌르느냐에 따라 느끼는 영역의 크기가 다를 것이다.</p>
+
+<p>마찬가지로 이미지에서 receptive field란 필터가 한 번의 보는 영영으로 볼 수 있는데, 결국 필터를 통해 어떤 사진의 전체적인 특징을 잡아내기 위해서는 receptive field는 높으면 높을 수록 좋다. 그렇다고 필터의 크기를 크게하면 연산의 양이 크게 늘어나고, 오버피팅의 우려가있다. 그래서 일반적인 CNN에서는 이를 conv-pooling의 결합으로 해결한다. pooling을 통해 dimension을 줄이고 다시 작은 크기의 filter로 conv를 하면, 전체적인 특징을 잡아낼 수 있다. 하지만 pooling을 수행하면 기존 정보의 손실이 일어난다. 이를 해결하기 위한것이 Dilated Convolution으로 Pooling을 수행하지 않고도 receptive field의 크기를 크게 가져갈 수 있기 때문에 spatial dimension의 손실이 적고, 대부분의 weight가 0이기 때문에 연산의 효율도 좋다. 공간적 특징을 유지하는 특성 때문에 Dilated Convolution은 특히 Segmentation에 많이 사용된다.</p>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c8.PNG" alt="" /></p>
+
+<font size="5">왜 작은 필터를 사용하는 걸까?</font>
+
+<p>-&gt;layer를 더 깊게하고 파라미터 수를 줄여 효율성을 깊게 만들기 위해서였습니다<br />
+3x3 conv (stride 1) layer를 3개 쌓으면 7x7 conv (stride 1)과 같은 수용영역(Receptive field)를 갖는다고 합니다. 즉, filter size가 똑같은데 3x3을 쓰면 더 깊게 쌓을 수 있는 것이죠<br />
+파라미터 수를 계산해보면,</p>
+
+<p>3x[3x3(필터의 가중치 수)xC(채널의 수)]이므로 3^3XC가 됩니다.</p>
+
+<p>7^2 x C &gt; 3^3 x C 이므로, 파라미터의 수가 훨씬 적죠.</p>
+
+<p>그래서 3x3의 필터를 고집한 것입니다.</p>
+
+<p>여기 보면 total 메모리가 only forward 과정에서만, image 1개당 거의 100mb가 필요합니다.<br />
+전체 메모리가 5GB라면, 50장밖에 못하는 거죠…<br />
+알렉스 넷은 60MB가 필요했는데, layer가 깊어진 만큼 메모리 부담이 크게 늘어납니다.</p>
+
+<p>강의 내 Q&amp;A 입니다.<br />
+Q : 쓸모없는 것들도 많은 텐데 꼭 memory를 많이 써가면서 연산을 전부 저장해야하는가?<br />
+A : 전부는 아니지만, NN은 Backward에서 체인룰을 이용해서 update해나가기 때문에 상당 부분의 연산을 저장 해야한다.</p>
+
+<h1 id="googlenet">GoogleNet</h1>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c9.PNG" alt="" /></p>
+
+<p>3번째 main GoogleNet입니다.</p>
+
+<ul>
+  <li>22 layer</li>
+  <li>Inception module</li>
+  <li>파라미터 개수를 줄이기 위해 FC layer가 없음</li>
+  <li>파라미터가 너무 많았던 AlexNet에 비해 5M개 밖에 없다</li>
+  <li>2014년도 우승 모델</li>
+</ul>
+
+<p>사실 inception module이란 개념을 처음 접해서 어..? 이걸 왜쓰지? 이게 뭐지.. 하면서 잘 이해가안됐던 부분이였습니다. 하지만 강의를 들으면서 상당히 fancy한 구조라는 걸 알게되었습니다.</p>
+
+<h2 id="inception-module">Inception Module</h2>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c10.PNG" alt="" /></p>
+
+<p>간단하게 Naive한 구조를 살펴보면 이전 레이어의 값들을 CONV와 POOL layer에 나눠줍니다.(병렬계산)<br />
+그리고 결과값들을 concatenation layer에서 합쳐주는 작업을 반복합니다.</p>
+
+<p><strong>Point 1</strong><br />
+각 필터에 stride는 무조건 1로하고, 3x3, 5x5에 각각 제로패딩을 해주어서 size가 같은 feature map들이 나오게해서 concate 시켜줍니다.</p>
+
+<p>그렇게 하면, 위 슬라이드를 예로 각각의 filter로 부터 전부 같은 size의 feature map들이 나오게 되는데, 이는 기존의 한 layer에서는 무조건 같은 사이즈의 filter만 썼던 것과는 달리 굉장히 다양한 특성을 지닌 feature map들을 얻을 수 있습니다.
+(concate를 하면, 4개의 필터를 거친 같은 사이즈들의 feature map들을 묶는 것입니다.)</p>
+
+<p><strong>Point 2</strong><br />
+굳이 1x1 filter를 쓰는 이유는 각각 필터값들이 변하지 않은 채로 depth가 줄어듭니다.<br />
+가령, 28x28x128의 feature map을 1x1x128필터를 16개쓰면 28x28x16개로 depth를 줄여서 연산량을 많이 줄일 수 있죠.</p>
+
+<p><strong>Point 3</strong><br />
+3x3 Pooling 했을 때, max Poolig을 해주면 이전 stride의 max값이 다음 stride의 필터에도 겹쳐서 좋은 값을 여러번 쓸 수 있습니다.<br />
+이미지 내에서 특징이 강한 픽셀값을 여러번 쓸 수 있는 것입니다.</p>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c11.PNG" alt="" /></p>
+
+<p>하지만 위와 같이 Navie한 구조는 연산량이 기하급수적으로 증가하는 문제가 있습니다.
+같은 size의 feature map들을 concate해주면, 128+192+96+256 = 672개 channel이므로 854M의 연산을 통해서 28x28x672 feature map이 나옵니다.Inception module하나에서 854M ops인데 다음 모듈로 넘어갈 때마다 depth가 꾸준히 증가하기 때문에 연산량도 함께 증가하게 될 것입니다. 또한 Pooling layer에서 depth를 줄이지 못한다는 문제도 있습니다.</p>
+
+<font size="5">**Bottleneck Architecture**</font>
+<p>그래서 Bottleneck Architecture를 사용하여 해당 문제를 해결합니다.</p>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c12.PNG" alt="" /></p>
+
+<p>간단하게 1x1 conv를 통해서 채널의 개수를 줄여줍니다</p>
+
+<font size="5">**Inception Module**</font>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c13.PNG" alt="" /></p>
+
+<ul>
+  <li>inception module 안에 bottle neck layer를 추가해보면 합성곱계산량이 358M개로 줄어드는 것을 볼 수 있다.</li>
+  <li>pooling layer의 경우 depth를 줄이기 위해 이후에 1x1 conv layer를 깔게 되는데, 이를 통해 depth도 줄여 4개의 output을 모두 concatenate한 depth 또한 줄일 수 있다.</li>
+</ul>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c14.PNG" alt="" /></p>
+
+<ol>
+  <li>
+    <p>Stem Network</p>
+
+    <ul>
+      <li>일반적인 네트워크 구조로 시작한다.<br />
+ Conv-Pool-Conv-Conv-Pool</li>
+    </ul>
+  </li>
+  <li>
+    <p>Inception Modules 이 쌓이는 중간층</p>
+  </li>
+  <li>
+    <p>Classifier output</p>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p>특히 FC layer를 없애서 parameter를 확 줄였는데, 그래도 잘 돌아갔다고 한다.</p>
+  </li>
+  <li>
+    <p>FC layer 대신 global average pooling layer(보라색 노드)을 깔았는데, 기존 FC layer는 feature map을 1차원벡터로 펼쳐서 Relu와 같은 활성화함수를 거친뒤 Softmax로 분류하게 되었는데, Global Average Pooling은 직전층에서 산출된 feature map 각각 (그림에서는 depth방향으로 1024개) 평균내는 방식의 Pooling layer라고 생각하면 된다.</p>
+  </li>
+  <li>
+    <p>1차원 벡터로 만들어야 softmax를 사용할 수 있고, FC layer로 활성함수를 거치지 않아도 이미 깊은 네트워크를 거치면서 효과적으로 Feature vector를 추출했기 때문에, 이정도만해도 분류가 가능했다고 한다.</p>
+  </li>
+</ul>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c15.PNG" alt="" /></p>
+
+<ol>
+  <li>Auxiliary classification</li>
+</ol>
+
+<ul>
+  <li>네트워크가 깊다보니 back propagation을 할 때 gradient vanishing문제가 발생하기가 상대적으로 더 쉽다. 그래서 중간 정류장에서 gradient와 loss까지 계산해놓고, back propagation시에 도와준다.</li>
+  <li>훈련시에만 달아준다.</li>
+</ul>
+
+<h1 id="resnet">Resnet</h1>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c16.PNG" alt="" /></p>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="elephantoid/elefunt-devlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/elefunt-devlog/cs231n/2021/07/02/cs231n_9.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/elefunt-devlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/elefunt-devlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
