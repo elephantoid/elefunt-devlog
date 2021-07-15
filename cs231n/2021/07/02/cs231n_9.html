@@ -78,7 +78,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      6 min read
+      8 min read
     
 </span></p>
 
@@ -384,6 +384,92 @@ A : 전부는 아니지만, NN은 Backward에서 체인룰을 이용해서 updat
 <h1 id="resnet">Resnet</h1>
 
 <p><img src="/elefunt-devlog/images/cs231n/cs231n-9/c16.PNG" alt="" /></p>
+
+<p>ResNet은 Residual block이라는 방법을 사용합니다</p>
+
+<ul>
+  <li>ImageNet을 위한 152 layer 모델</li>
+  <li>ILSVRC’15 분류 1등(3.57% top 5 error)</li>
+  <li>also COCO classification/detection 대회 우승</li>
+</ul>
+
+<h2 id="basic-motivation">Basic motivation</h2>
+
+<p>일반 CNN을 깊고 더 깊게 마들면 어떻게 될까?<br />
+레이어만 깊게 쌓으면 성능이 좋아질까?</p>
+
+<p>Answer: No</p>
+
+<p><img src="/images/cs231n/cs231n-9/c17.PNG" alt="" /></p>
+
+<p>[우측] test error에서 보면 깊은 레이어가 오히려 더 안좋다<br />
+[좌측] training error를 보면 56-layer가 많은 파라미터가 있으니 overfit되어 error가 낮아야 할 것 같지만 정반대의 결과가 나왔습니다.<br />
+따라서 test 성능이 낮은 이유가 over-fitting때문만은 아닌것을 알 수 있습니다.</p>
+
+<p>가설: 더 깊은 모델 학습 시 optimization문제가 생긴다.(overfit때문이 아니라)</p>
+
+<p>추론: “모델이 더 깊으면 얕은 모델만큼은 성능이 나와야 하지 않을까?”</p>
+
+<p>예시: 더 얕은 모델의 가중치를 깊은 모델의 일부 레이어에 복사<br />
+-&gt; 그리고 나머지 레이어는 identity mapping을 하는것<br />
+-&gt; 깊은 모델은 적어도 얕은 모델만큼의 성능이 보장됩니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">identity mapping</code>: input을 output으로 그대로 내보냄</p>
+
+<h2 id="model-architecture">Model Architecture</h2>
+
+<p><img src="/images/cs231n/cs231n-9/c18.PNG" alt="" /></p>
+
+<p>기존에는 왼쪽의 그림 처럼 H(x)를 학습했습니다.</p>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">H(x)=F(x)+x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span></span>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>H</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">F(x)=H(x)-x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span></span>
+
+<ul>
+  <li>Residual block
+input: 이전 레이어의 output
+target: F(x)
+output: F(x)<code class="language-plaintext highlighter-rouge">+x</code>
+<code class="language-plaintext highlighter-rouge">+x</code>를 Skip connection(or Shortcut connection)이라고 부르며 가중치가 없으면 입력을 identity mapping으로 그대로 출력으로 보냅니다.<br />
+이렇게되면 실제 레이어는 변화량(delta)만 학습하면 됩니다.<br />
+이 변화량은 입력 X에 대한 잔차(residual)이라고 할 수 있습니다.</li>
+</ul>
+
+<p>저는 맨처음 식을 볼때 F(x)가 H(x)-x인데 output이그럼 결국 H(x)를 학습하는거 아니냐는 바보같은 생각을 했습니다.<br />
+사실은 이게 아니라 F(x)를 학습하고 나서 x를 더해주는 것입니다.</p>
+
+<p><strong>정리</strong>
+제가 이해한대로 풀어보자면 기존의 학습 방법은 H(x)를 학습하는데 많은 리소스가 들었습니다.<br />
+하지만 residual block은 잔차만 학습한다고 했는데 그 이유는 F(x)를 학습하고 output으로 내보낼 때 input을 한 번 추가해줍니다.<br />
+이렇게 되면 F(x)는 함수 F()를 통해 변환된 x의 값 즉 변화된 값이 됩니다.<br />
+output을 보면 F(x)+x입니다. x를 입력해서 나온 값이 x+x의변화량입니다.<br />
+저희는 이 input과 output의 잔차(Residual) F(x)을 학습합니다.</p>
+
+<p>다시말해 이전 레이어의 X값을 보존하고 추가적으로 필요한 정보를 학습하는 방식으로 진행됩니다.<br />
+그렇지 않고 매번 새로운 학습을 하는 경우보다 학습하기 쉽다.</p>
+
+<p>극단적으로 Input=Output optimal이라는 상황입니다.<br />
+그럼 레이어의 출력인 F(x)가 0이어야 하므로(residual=0) F가 0이 되도록 학습하는게 난이도가 더 낮습니다.</p>
+
+<h2 id="차원이-다를-경우">차원이 다를 경우</h2>
+
+<p>Input차원과 output차원이 다를 경우 linear projection <code class="language-plaintext highlighter-rouge">Ws</code>를 x에 곱해줌으로써 차원을 맞춰줍니다.(또는 Zero-padding 사용)<br />
+하지만 F가 single layer라면 이건 단지 linear layer이기 때문에 아무런 성과가 없습니다.</p>
+
+<p><img src="/images/cs231n/cs231n-9/c19.PNG" alt="" /></p>
+
+<ul>
+  <li>기본적으로 하나의 Residual block은 두 개의 3x3 conv layers로 이루어짐</li>
+  <li>주기적으로 필터를 두배로 늘리고 stride 2 Downsampling</li>
+  <li>No FC layer, instead GAP layer(하나의 Map 전체를 Average Pooling)</li>
+  <li>마지막에 1000개의 클래스 분류용 노드</li>
+</ul>
+
+<p><img src="/images/cs231n/cs231n-9/c20.PNG" alt="" /></p>
+
+<p>Depth가 50 이상일 때 Bottleneck Layers를 사용(GoogLeNet과 유사함)
+1x1 conv 초기 필터 depth 줄이고 마지막에 한 번 더 사용해서 depth를 줄임</p>
 
   </div><!-- from https://github.com/utterance/utterances -->
 <script src="https://utteranc.es/client.js"
