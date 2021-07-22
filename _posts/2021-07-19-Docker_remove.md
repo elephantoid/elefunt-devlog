@@ -1,6 +1,6 @@
 ---
 title: "[Docker] WSL2 도커 데스크탑 볼륨 줄이는 방법"
-description: "로컬에있는 .vhdx파일의 큭 줄이기"
+description: "로컬에있는 .vhdx파일의 크기 줄이기"
 layout: post
 toc: false
 comments: true
