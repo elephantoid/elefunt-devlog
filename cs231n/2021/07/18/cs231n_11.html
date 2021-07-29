@@ -78,7 +78,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      4 min read
+      7 min read
     
 </span></p>
 
@@ -95,6 +95,7 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <p><a href="https://www.youtube.com/watch?v=nDPWywWRIRo&amp;t=1s"><img src="http://img.youtube.com/vi/nDPWywWRIRo/0.jpg" alt="cs231n 11강 유튜브" /></a></p>
+
 <blockquote>
   <p>Tip: 이미지를 클릭하시면 바로 유튜브 강의를 볼 수 있습니다.</p>
 </blockquote>
@@ -104,6 +105,7 @@ window.onload = wrap_img;
 <p>앞서 Classification과 다양한 모델들 그리고 아키텍처들을 살펴봤습니다. 이번 강의에서는 Computer Vision분야의 다른 task들을 알아볼 것입니다.</p>
 
 <h1 id="today-topic">Today topic</h1>
+
 <ul>
   <li>Semantic Segmentation</li>
   <li>Instance Segmentation</li>
@@ -115,7 +117,7 @@ window.onload = wrap_img;
 
 <p><img src="/elefunt-devlog/images/cs231n/cs231n-11/c2.PNG" alt="" /></p>
 
-<p>Semantic Segmentation은 이미지의 픽셀들이 어떤 클래스에 속하는지 예측하는 과정이다.  예를들어 위 사진 처럼 각각의 픽셀이 고양이인지 잔디인지 하늘인지 예측하여 맞춰야한다.<br />
+<p>Semantic Segmentation은 이미지의 픽셀들이 어떤 클래스에 속하는지 예측하는 과정이다. 예를들어 위 사진 처럼 각각의 픽셀이 고양이인지 잔디인지 하늘인지 예측하여 맞춰야한다.<br />
 하지만 문제점이 하나 있다면 개별 객체는 구분을 못한다..(우측 소 사진 참고)</p>
 
 <h2 id="idea-1-sliding-window">IDEA 1: Sliding Window</h2>
@@ -186,6 +188,7 @@ output에서는 transpose convolution간에 Receptive Field가 겹칠 수 있습
 1D로 된 convolutiond으로 예시를 들어보겠습니다.</p>
 
 <p><img src="/elefunt-devlog/images/cs231n/cs231n-11/c9.PNG" alt="" /></p>
+
 <ul>
   <li>
     <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>필터</mtext><mi>x</mi><mo>=</mo><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo separator="true">,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">필터x=(x,y,z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord hangul_fallback">필</span><span class="mord hangul_fallback">터</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span></span>
@@ -211,7 +214,7 @@ output이 input에 비해 크게 확장된 것을 알 수 있습니다.</p>
 
 <h1 id="classification--localization">Classification + Localization</h1>
 
-<p>이미지가 어떤 카테고리에 속하는지 뿐만 아니라 실제 객체에 Bounding Box(네모)를 그려서  이미지에서 어디에 있는지 알 수 있습니다.<br />
+<p>이미지가 어떤 카테고리에 속하는지 뿐만 아니라 실제 객체에 Bounding Box(네모)를 그려서 이미지에서 어디에 있는지 알 수 있습니다.<br />
 Classification + Localization은 object detection과는 구별됩니다.<br />
 localization에서는 <strong>오직 하나의 객체</strong>만 찾아 레이블을 매기고 위치를 찾습니다.</p>
 
@@ -239,8 +242,9 @@ localization에서는 <strong>오직 하나의 객체</strong>만 찾아 레이�
 <summary>Q: 두 개의 loss 단위가 다른데 Gradient 계산시 문제가 되지 않나요?</summary>
 <div>
 
-    <p>A: multi-task loss입니다. 네트워크 가중치들의 각각의 미분 값을 계산해야 합니다. 그래서 두 개의 미분값이 생기고 둘 다 최소화 시켜야합니다. 사실 이 loss의 가중치를 조절하는 하이퍼 파라미터가 있습니다. 두 loss의 가중치 합이 최종 loss입니다.  loss의 가중치 합에 대한 gradient를 계산하는 것입니다.<br />
+    <p>A: multi-task loss입니다. 네트워크 가중치들의 각각의 미분 값을 계산해야 합니다. 그래서 두 개의 미분값이 생기고 둘 다 최소화 시켜야합니다. 사실 이 loss의 가중치를 조절하는 하이퍼 파라미터가 있습니다. 두 loss의 가중치 합이 최종 loss입니다. loss의 가중치 합에 대한 gradient를 계산하는 것입니다.<br />
 이 하이퍼 파라미터를 튜닝하는 것은 어려운데 그 이유는 이전에 봐왔던 것과는 다르게 이 하이퍼 파라미터는 loss값 자체를 변경하게 됩니다. 일반적인 방법은loss값을 비교하는 것이 아니라 모델의 성능지표를 보는 것입니다.</p>
+
   </div>
 </details>
 
@@ -274,11 +278,13 @@ crop(잘라낸)한 이미지를 CNN에 넣고 classification을 돌립니다 객
 
 <p><img src="/elefunt-devlog/images/cs231n/cs231n-11/c14.PNG" alt="" /></p>
 
-<p>사실 이 방법은 Deep learning을 사용하지는 않습니다. 
+<p>사실 이 방법은 Deep learning을 사용하지는 않습니다.
 이미지 내에 뭉쳐진 곳들을 찾아 Object가 있을법한 1000개의 box를 제공합니다.<br />
-이 지역들은 객체가 있을지도 모르는 후보 영역들입니다. 
- ### Selective Search
- 2000개의 Region Proposals을 만들어 냅니다. 비교적 빠릅니다. 노이즈가 심하고 실제 객체가 아닐수도 있지만 꽤 괜찮습니다.</p>
+이 지역들은 객체가 있을지도 모르는 후보 영역들입니다.</p>
+
+<h3 id="selective-search">Selective Search</h3>
+
+<p>2000개의 Region Proposals을 만들어 냅니다. 비교적 빠릅니다. 노이즈가 심하고 실제 객체가 아닐수도 있지만 꽤 괜찮습니다.</p>
 
 <p>이제는 모든 위치를 다 고려하는 것이 아니라 Region Proposals Networks를 적용해서 객체가 있을법한 Region Proposals를 얻어냅니다. 이것을 CNN의 입력으로 넣으면 이전 방법보다 훨씬 계산량을 감소시킬 수 있을 것입니다.</p>
 
@@ -297,6 +303,7 @@ crop(잘라낸)한 이미지를 CNN에 넣고 classification을 돌립니다 객
 </ol>
 
 <p><strong><font size="5">문제점 </font></strong></p>
+
 <ul>
   <li>계산 비용이 많이 든다.</li>
   <li>용량(Memory)도 많이 든다.</li>
@@ -306,10 +313,101 @@ crop(잘라낸)한 이미지를 CNN에 넣고 classification을 돌립니다 객
   <li><strong>Backprop가 안된다.</strong></li>
 </ul>
 
-<h1 id="references">References</h1>
-<p><a href="https://naokishibuya.medium.com/up-sampling-with-transposed-convolution-9ae4f2df52d0">Transpose Convolution</a>
-<a href="https://taeyoung96.github.io/cs231n/CS231n_11/">cs231n_11_리뷰</a>
-<a href="https://nuggy875.tistory.com/21">R-CNN</a></p>
+<h2 id="fast-r-cnn">Fast R-CNN</h2>
+
+<p>앞서 R-CNN은 다양한 문제점이 있었습니다. 해당되는 문제점들 중에서 속도 측면에서 더 빨라진 모델입니다.</p>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-11/c16.PNG" alt="" /></p>
+
+<p>기존 모델은 이미지에서 바로 Selective Serch를 통해서 각각의 Region proposals를 CNN에 넣고 작업 시간을 오래 잡아먹었습니다.<br />
+하지만 Fast R-CNN 모델은 먼저 이미지에서 ROI 영역 추출 후 CNN을 거쳐서 Feature Map을 뽑고 거기에 처음에 뽑아둔 ROI영역을 적용 시키기 때문에 Feature들을 공유하면서 더 빠르게 작업을 수행할 수 있습니다. 즉, input이 R-CNN은 2000장 정도였다면 현재는 1장입니다.</p>
+
+<p>ROI Pooling
+이 부분은 Fast R-CNN의 핵심이라고 할 수 있습니다. ROI를 FC layer에 넣기 위해서는 같은 크기여야 하는데 Selective Search를 통해 구해진 ROI 영역은 제각각 다릅니다. 따라서 이 Resolution의 크기를 맞춰주기 위해 ROI pooling을 수행합니다.<br />
+간단하게 FC layer에 넣기 위해 제각각인 모양을 통일시켜준다고 생각하시면 됩니다.<br />
+그 방법은 크기가 다른 Feature Map의 Region마다 Stride를 다르게 Max pooling하는 것입니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/70086728/127449634-1e31b99c-063b-4f30-8e1e-0d6454600c63.gif" alt="roi_pooling" /></p>
+
+<p>마지막 부분은 R-CNN과 비슷하지만 softmax를 사용해서 classification을 진행 했습니다.</p>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-11/c18.png" alt="" />
+R-CNN이나 SPP-Net에 비해 뛰어난 성능을 보였고 기존 R-CNN의 문제도 많이 해결했지만 Region Proposal에 걸리는 2.3초 중 2초의 시간 때문에 병목현상이 생기는 문제가 있지만 그것을 해결하기 위해 아래 모델이 나왔습니다.</p>
+
+<h2 id="faster-r-cnn">Faster R-CNN</h2>
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-11/c17.PNG" alt="" /></p>
+
+<p>다른 부분들은 다 비슷하지만 여기에 RPN이라는 개념이 나옵니다. 해당 보라색 부분과 Selective Search를 제외하면 동일한 구조입니다.
+RPN의 input은 Feature map이고 output은 Object proposals의 Sample입니다.</p>
+
+<p>원래 네트워크 밖에서 Selective Search를 하며 2초가 걸렸던 것을 이제 네트워크 안에서 RPN이 해결합니다.</p>
+
+<p>총 4개의 Loss function이 필요합니다.</p>
+<ol>
+  <li>RPN classify object / not object (binary classificaion) ROI에 객체가 있는지 없는지</li>
+  <li>RPN regress box coordinate 예측한 BBox에 관한 것</li>
+  <li>Final classification score(object classes)</li>
+  <li>Final box coordinates 앞서 만든 regression을 보정해줍니다</li>
+</ol>
+
+<p>RPN은 Region Proposal Network을 의미한다.
+Faster R-CNN에서는 총 9개의 anchor box를 사용하는데</p>
+
+<p>Anchor box란 물체의 모양이 어떻게 생겼는지 모르니 서로 다른 비율의 Bounding Box를 만들고, 모두 시도를 해봐서 최적의 Bounding Box를 찾기 위해 사용하는 것이라 생각하면 이해하기 쉽다.</p>
+
+<p>물체가 있을 확률을 IoU(Intersection over Union)을 통해 계산한다.</p>
+
+<p>내가 예측한 Boundnig Box의 크기와 실제 Groundtruth의 값을 비교해보는 것이다.</p>
+
+<details>
+<summary>Q: 어떻게 RPN GT가 없는데 어떻게 RPN을 학습시키는가?</summary>
+<div>
+
+    <p>A:<br />
+GT(Ground truth) object와 일정 threshold이상 겹치는 proposals이 있을 것입니다. 이런 regoin proposal은 positive라고 예측해야 합니다. 반면 조금만 겹치면 Negative라고 예측해야합니다.</p>
+
+  </div>
+</details>
+
+<p>Faster R-CNN에서 흥미로운 점은 Region proposals 자체도 학습되었기 때문에 RPN과 새로운 데이터 사이의 간극이 존재할 수도 있을 것입니다. 이 경우에는 새로운 데이터에 맞게 region proplosal을 새롭게 학습시키면 그만입니다.</p>
+
+<h2 id="yolossd">Yolo/SSD</h2>
+
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-11/c19.PNG" alt="" /></p>
+
+<p>그림 우측의 B는 base BBox의 offset(4개) + Confidence score(1개)로 구성<br />
+C는 C개의 카테고리에 대한 Classification Score</p>
+
+<p>지금까지는 2-stage Detector였습니다 classificaion과 localization을 따로 했지만 Yolo와 SSD는 한 번의 forward pass로 처리합니다.</p>
+
+<p>주요 아이디어는 각 Task를 따로 계산하지않고 하나의 regression문제로 풀어보는 것입니다.</p>
+
+<p>거대한 CNN을 통해서 예측을 할텐데 그 결과값 중 하나는 Bbox의 offset을 예측할 수 있을 것입니다. 실제 위치가 되려면 base BBox를 얼만큼 옮겨야 하는지를 뜻합니다. 그리고 각 BBOx에 대해서 Classification Score를 구합니다. 이 카테고리에 속한 객체가 존재할 가능성을 의미합니다.</p>
+
+<font size="4">You Only Look one</font>
+<p>Yolo같은 경우는 이미지의 Grid를 나눌 때 7*7로 고정을 한 다음, Bounding Box를 찾습니다</p>
+
+<font size="4">Single Short Detection</font>
+<p>후보 base BBox와 GT Objects를 매칭시키는 방법<br />
+SSD의 같은 경우 Grid를 나눌 때, 여러 feature map을 참고하여 세분화하여 Grid를 나누고 Bounding Box를 찾는다.</p>
+
+<h1 id="instance-segmentation">Instance Segmentation</h1>
+<p>위에서 배운 것들의 총 집합입니다. 각각의 객체를 찾아서 BBox를 그리는게 아니라 객체 별 Segmentation Mask를 예측해야합니다. 각 객체에 해당하는 픽셀을 예측해야 하는 문제입니다.</p>
+
+<h2 id="mask-r-cnn">Mask R-CNN</h2>
+<p><img src="/elefunt-devlog/images/cs231n/cs231n-11/c20.PNG" alt="" /></p>
+
+<p>Faster R-CNN와 유사합니다. ROI Align(Pooling)까지는 동일하지만 거기서 BBox마다 Segmentation mask를 예측하도록 합니다.<br />
+RPN으로 뽑은 ROI영역 내에서 각각 sementic segmentation을 수행합니다.<br />
+위쪽으로는 각 Region proposal이 어떤 카테고리에 속하는지 계산합니다. 또한 Region proposal의 좌표를 보정해주는 BBox Regression도 예측합니다.
+아래쪽은 각 픽셀마다 객체인지 아닌지 확인합니다.</p>
+
+<h1 id="reference">Reference</h1>
+
+<p><a href="https://naokishibuya.medium.com/up-sampling-with-transposed-convolution-9ae4f2df52d0">Transpose Convolution</a><br />
+<a href="https://taeyoung96.github.io/cs231n/CS231n_11/">cs231n<em>11</em>리뷰</a><br />
+<a href="https://nuggy875.tistory.com/21">R-CNN</a><br />
+<a href="https://nuggy875.tistory.com/21">Fast&amp;Faster_R-CNN</a></p>
 
   </div><!-- from https://github.com/utterance/utterances -->
 <script src="https://utteranc.es/client.js"
