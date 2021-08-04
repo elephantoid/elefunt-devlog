@@ -156,7 +156,7 @@ CNN의 마지막 레이어에는 1000개의 클래스 스코어가 있습니다.
 
 <h1 id="activations">Activations</h1>
 
-<p>&lt;font size=4; color=”blue”&gt;Nearest Neighbors&lt;/font&gt;</p>
+<font size="4" color="blue">Nearest Neighbors</font>
 
 <p>맨 왼쪽의 사진은 <code class="language-plaintext highlighter-rouge">이미지 픽셀 공간</code>에서의 Nearest Neighbors입니다.
 픽셀 공간에서는 비슷한 형태나 색을 갖고 있다면 가깝다고 생각하는 것을 확인
@@ -167,8 +167,8 @@ CNN의 마지막 레이어에는 1000개의 클래스 스코어가 있습니다.
 <br />
 <br /></p>
 
-<p>&lt;font size=4; color=”blue”&gt;Dimensionality Reduction&lt;/font&gt;
-<img src="https://user-images.githubusercontent.com/70086728/127946290-14305780-2ff4-4444-ab50-eb0cba42d148.PNG" alt="4" /></p>
+<font size="4" color="blue">Dimensionality Reduction</font>
+<p><img src="https://user-images.githubusercontent.com/70086728/127946290-14305780-2ff4-4444-ab50-eb0cba42d148.PNG" alt="4" /></p>
 
 <p>차원 축소라는 단어를 생각하면 단연 제일 먼저 떠올리는 것은 PCA(Principle Component Analysis)일 것입니다. 고차원 특징 벡터들을 원하는 dimension으로 압축시키는 기법입니다.<br />
 PCA보다 더 강력한 알고리즘인 <code class="language-plaintext highlighter-rouge">t-SNE(t-distributed stochastic Neighbor embeddings))</code>입니다.<br />
@@ -180,7 +180,7 @@ PCA보다 더 강력한 알고리즘인 <code class="language-plaintext highligh
 
 <h2 id="how-to-visualize-features">How to visualize features</h2>
 
-<p>&lt;font size=4; color=”blue”&gt;Maximally Activating Patches&lt;/font&gt;</p>
+<font size="4" color="blue">Maximally Activating Patches</font>
 
 <p><img src="https://user-images.githubusercontent.com/70086728/127947327-567528d4-7481-4770-b090-7c0104c3955c.PNG" alt="5" />
 어떤 이미지가 들어와야 각 뉴런들의 활성이 최대화되는지 시각화하는 방법</p>
@@ -195,8 +195,8 @@ PCA보다 더 강력한 알고리즘인 <code class="language-plaintext highligh
 <br />
 <br /></p>
 
-<p>&lt;font size=4; color=”blue”&gt;Occlusion Experiments&lt;/font&gt;
-<img src="https://user-images.githubusercontent.com/70086728/127947334-be8215f9-fdaf-477a-a3f0-3eed02f8eec8.PNG" alt="6" />
+<font size="4" color="blue">Occlusion Experiments</font>
+<p><img src="https://user-images.githubusercontent.com/70086728/127947334-be8215f9-fdaf-477a-a3f0-3eed02f8eec8.PNG" alt="6" />
 입력의 어떤 부분이 분류를 결정짓는 근거가 되는지에 관한 실험</p>
 
 <ol>
@@ -206,16 +206,16 @@ PCA보다 더 강력한 알고리즘인 <code class="language-plaintext highligh
 예측확률이 낮을 수록 해당 부분이 분류를 결정짓는 중요한 부분인 것을 알 수 있다.</li>
 </ol>
 
-<p>&lt;font size=4; color=”blue”&gt;Saliency Maps&lt;/font&gt;
-<img src="https://user-images.githubusercontent.com/70086728/127947336-074168c4-83bd-4234-9b95-6d17e524a591.PNG" alt="7" />
+<font size="4" color="blue">Saliency Maps</font>
+<p><img src="https://user-images.githubusercontent.com/70086728/127947336-074168c4-83bd-4234-9b95-6d17e524a591.PNG" alt="7" />
 입력 이미지의 각 픽셀들에 대해 예측한 <code class="language-plaintext highlighter-rouge">클래스 스코어</code>의 그레디언트를 계산하는 방법
 어떤 픽셀이 분류하는데 있어서 어떤 픽셀들이 필요한지 알 수 있다
 <br />
 <br />
 <br /></p>
 
-<p>&lt;font size=4; color=”blue”&gt;Gudied back propagation&lt;/font&gt;
-<img src="https://user-images.githubusercontent.com/70086728/127970216-d90e4fb7-0abd-42ae-a00d-16bf4de645e7.PNG" alt="8" /></p>
+<font size="4" color="blue">Gudied back propagation</font>
+<p><img src="https://user-images.githubusercontent.com/70086728/127970216-d90e4fb7-0abd-42ae-a00d-16bf4de645e7.PNG" alt="8" /></p>
 
 <p>네트워크의 중간 뉴런을 하나 선택<br />
 입력 이미지의 어떤 부분이 내가 선택한 뉴런의 값에 영향을 주는지 찾는 것<br />
@@ -235,8 +235,8 @@ PCA보다 더 강력한 알고리즘인 <code class="language-plaintext highligh
 <br />
 <br /></p>
 
-<p>&lt;font size=4; color=”blue”&gt;Gradient ascent&lt;/font&gt;
-<img src="https://user-images.githubusercontent.com/70086728/127971459-6b7935f6-182d-447c-9368-4c2419f2605c.PNG" alt="9" />
+<font size="4" color="blue">Gradient ascent</font>
+<p><img src="https://user-images.githubusercontent.com/70086728/127971459-6b7935f6-182d-447c-9368-4c2419f2605c.PNG" alt="9" />
 지금까지는 Loss를 최소화시켜 네트워크를 학습시키기 위해 Gradient decent를 사용했습니다.<br />
 하지만 여기선 네트워크의 가중치를 모두 고정시킵니다. 그리고 Gradient ascent를 통해 중간 뉴런 혹은 클래스를 최대화 시키는 입력 이미지의 픽셀들을 만들어냅니다.</p>
 
@@ -293,7 +293,7 @@ PCA보다 더 강력한 알고리즘인 <code class="language-plaintext highligh
 <p><br />
 <br /></p>
 
-<p>&lt;font size=4; color=”blue”&gt;Fooling Image, Adversarial Examples&lt;/font&gt;</p>
+<font size="4" color="blue">Fooling Image, Adversarial Examples</font>
 
 <p><img src="https://user-images.githubusercontent.com/70086728/127979041-08deb1ac-aca2-4ace-b172-e530c6bfc688.PNG" alt="13" /></p>
 
@@ -308,7 +308,7 @@ PCA보다 더 강력한 알고리즘인 <code class="language-plaintext highligh
   <li>(4) Repeat until network is fooled</li>
 </ul>
 
-<p>&lt;font size=4; color=”blue”&gt;Deep Dream&lt;/font&gt;</p>
+<font size="4" color="blue">Deep Dream</font>
 
 <p><img src="https://user-images.githubusercontent.com/70086728/128128598-ec43912d-410e-4bbc-bb91-ece7dcaa6461.PNG" alt="14" /></p>
 
@@ -344,7 +344,7 @@ MIT place로 학습시킨 네트워크입니다.
 
 <p><a href="https://github.com/google/deepdream">DeepDream Code</a></p>
 
-<p>&lt;font size=4; color=”blue”&gt;Feature Inversion&lt;/font&gt;</p>
+<font size="4" color="blue">Feature Inversion</font>
 
 <p><img src="https://user-images.githubusercontent.com/70086728/128130398-863adad4-53af-40aa-8971-f40b1ded0b16.PNG" alt="18" /></p>
 
@@ -363,7 +363,7 @@ MIT place로 학습시킨 네트워크입니다.
 <p><img src="https://user-images.githubusercontent.com/70086728/128130730-60b902d7-17f6-42dc-80ff-04aa0ff7c8b5.PNG" alt="19" />
 처음 이미지가 들어오고서는 재구성했을때 원본과 거의 차이점이 없지만 네트워크를 통과하면서 주요 특징은 남지만 저수준의 정보(디테일,텍스쳐,색, 등)들이 사라지는 것을 볼 수 있습니다</p>
 
-<p>&lt;font size=4; color=”blue”&gt;Texture Synthesis(텍츠처합성)&lt;/font&gt;</p>
+<font size="4" color="blue">Texture Synthesis(텍츠처합성)</font>
 
 <p><img src="https://user-images.githubusercontent.com/70086728/128132831-73251ad8-ac7e-4308-9dd6-a3088db40596.PNG" alt="20" /></p>
 
@@ -380,8 +380,8 @@ Nearest Neighbor도 잘 되며 신경망 대신 scan line을 따라서 한 픽�
 <p>자세히 알 필요는 없어요~<br />
 하지만 복잡한 텍스처에서는 단순히 복사하는 것으로는 문제를 풀 수 없을 수도 있습니다.</p>
 
-<p>&lt;font size=4; color=”blue”&gt;Nerual Texture Synthesis&lt;/font&gt;
-<img src="https://user-images.githubusercontent.com/70086728/128133579-4ee78729-575d-47b9-8ce8-2f0d026f673d.PNG" alt="21" /></p>
+<font size="4" color="blue">Nerual Texture Synthesis</font>
+<p><img src="https://user-images.githubusercontent.com/70086728/128133579-4ee78729-575d-47b9-8ce8-2f0d026f673d.PNG" alt="21" /></p>
 
 <ol>
   <li>입력 이미지 네트워크 통과</li>
@@ -413,7 +413,7 @@ Gradient ascent procedure과 유사한 과정입니다.</p>
 
 <ol>
   <li>pretrained 모델 다운로드 받기(VGG를 선호한다고해요)</li>
-  <li>input image를 CNN을 통과시키며 모든 레이어의 activations를 기록 Layer_i는 \C_i\times H_i\times W_i\ 의 쉐입</li>
+  <li>input image를 CNN을 통과시키며 모든 레이어의 activations를 기록 Layer_i는 \C_i\times H_i\times W_i(\) 의 쉐입</li>
   <li>각각의 레이어에서 Gram matrix를 계산</li>
   <li>생성해야할 이미지를 랜덤으로 초기화</li>
   <li>다시 CNN에 generated image를 통과시키며 Gram matrix를 계산</li>
@@ -425,7 +425,7 @@ Gradient ascent procedure과 유사한 과정입니다.</p>
 
 <p><img src="https://user-images.githubusercontent.com/70086728/128135370-11ef34e0-3686-42c8-b2b4-14cac6d262ee.PNG" alt="24" /></p>
 
-<p>&lt;font size=4; color=”blue”&gt;Nerual Style Transfer&lt;/font&gt;</p>
+<font size="4" color="blue">Nerual Style Transfer</font>
 
 <p><img src="https://user-images.githubusercontent.com/70086728/128136407-576f2a82-a4cc-4996-8998-d5163879d7d1.PNG" alt="25" /></p>
 
@@ -447,7 +447,7 @@ forward/backprop 과정에서 Gradient ascent로 업데이트를 수백번 반�
 
 <p><a href="https://github.com/jcjohnson/neural-style">Style Transfer Code</a></p>
 
-<p>&lt;font size=4; color=”blue”&gt;Fast Style Transfer&lt;/font&gt;</p>
+<font size="4" color="blue">Fast Style Transfer</font>
 
 <p><img src="https://user-images.githubusercontent.com/70086728/128139152-2d16b250-bcea-404a-baf4-593b924138ed.PNG" alt="27" /></p>
 
@@ -466,7 +466,7 @@ forward/backprop 과정에서 Gradient ascent로 업데이트를 수백번 반�
 
 <p><img src="https://user-images.githubusercontent.com/70086728/128139158-af61a938-01dd-41f3-bb3e-3c60dc68d414.PNG" alt="28" /></p>
 
-<p>&lt;font size=4; color=”blue”&gt;One network, Many Styles&lt;/font&gt;</p>
+<font size="4" color="blue">One network, Many Styles</font>
 
 <p><img src="https://user-images.githubusercontent.com/70086728/128139161-49a3bf69-87ec-419f-979f-e7e2b061690b.PNG" alt="29" />
 Google에서 나온 논문으로 하나의 네트워크로 다양한 Style을 생성해내는 방법</p>
