@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Data pipeline Project(feat. AWS) | elefunt-devlog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Data pipeline Project(feat. AWS)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="데이터 엔지니어링 사이드 프로젝트" />
+<meta property="og:description" content="데이터 엔지니어링 사이드 프로젝트" />
+<link rel="canonical" href="https://elephantoid.github.io/elefunt-devlog/project/2021/10/02/data-pipeline.html" />
+<meta property="og:url" content="https://elephantoid.github.io/elefunt-devlog/project/2021/10/02/data-pipeline.html" />
+<meta property="og:site_name" content="elefunt-devlog" />
+<meta property="og:image" content="https://elephantoid.github.io/elefunt-devlog/images/process.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-02T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"데이터 엔지니어링 사이드 프로젝트","url":"https://elephantoid.github.io/elefunt-devlog/project/2021/10/02/data-pipeline.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://elephantoid.github.io/elefunt-devlog/project/2021/10/02/data-pipeline.html"},"headline":"Data pipeline Project(feat. AWS)","dateModified":"2021-10-02T00:00:00-05:00","datePublished":"2021-10-02T00:00:00-05:00","image":"https://elephantoid.github.io/elefunt-devlog/images/process.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/elefunt-devlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://elephantoid.github.io/elefunt-devlog/feed.xml" title="elefunt-devlog" /><link rel="shortcut icon" type="image/x-icon" href="/elefunt-devlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/elefunt-devlog/">elefunt-devlog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/elefunt-devlog/about/">About Me</a><a class="page-link" href="/elefunt-devlog/gitInfo/">gitInfo</a><a class="page-link" href="/elefunt-devlog/sample/">sample</a><a class="page-link" href="/elefunt-devlog/search/">Search</a><a class="page-link" href="/elefunt-devlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Data pipeline Project(feat. AWS)</h1><p class="page-description">데이터 엔지니어링 사이드 프로젝트</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-02T00:00:00-05:00" itemprop="datePublished">
+        Oct 2, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/elefunt-devlog/categories/#Project">Project</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/elephantoid/elefunt-devlog/tree/master/_notebooks/2021-10-02-data-pipeline.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/elefunt-devlog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/elephantoid/elefunt-devlog/master?filepath=_notebooks%2F2021-10-02-data-pipeline.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/elefunt-devlog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/elephantoid/elefunt-devlog/blob/master/_notebooks/2021-10-02-data-pipeline.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/elefunt-devlog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Data-pipeline-구축-목표">Data pipeline 구축 목표 </a></li>
+<li class="toc-entry toc-h1"><a href="#Process">Process </a></li>
+<li class="toc-entry toc-h1"><a href="#Source">Source </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#WHY">WHY </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Part-1:-데이터-수집하기">Part 1: 데이터 수집하기 </a></li>
+<li class="toc-entry toc-h1"><a href="#Part-2:-AWS-RDS-&-SQL">Part 2: AWS RDS &amp; SQL </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#RDS-생성하기">RDS 생성하기 </a></li>
+<li class="toc-entry toc-h2"><a href="#인바운드-규칙-추가하기">인바운드 규칙 추가하기 </a></li>
+<li class="toc-entry toc-h2"><a href="#1.-RDS---데이터베이스---보안그룹">1. RDS - 데이터베이스 - 보안그룹 </a></li>
+<li class="toc-entry toc-h2"><a href="#2.-Edit-Inbound-rules">2. Edit Inbound rules </a></li>
+<li class="toc-entry toc-h2"><a href="#3.-규칙-추가---MySQL---IP-설정---규칙추가">3. 규칙 추가 - MySQL - IP 설정 - 규칙추가 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Part-3:-외부에서-접속하기">Part 3: 외부에서 접속하기 </a></li>
+<li class="toc-entry toc-h1"><a href="#마치며">마치며 </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-10-02-data-pipeline.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Data-pipeline-구축-목표">
+<a class="anchor" href="#Data-pipeline-%EA%B5%AC%EC%B6%95-%EB%AA%A9%ED%91%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data pipeline 구축 목표<a class="anchor-link" href="#Data-pipeline-%EA%B5%AC%EC%B6%95-%EB%AA%A9%ED%91%9C"> </a>
+</h1>
+<p>사실 이전에 대학교 때 쇼핑몰 데이터를 MySQL서버에 저장해서 분석해보는 프로젝트를 진행한 경험이 있습니다.<br>
+여기에 조금 더 조미료를 추가해서 <strong>AWS를 이용해서 클라우드에선 어떻게 사용하는지 배우기 위해</strong> 이 프로젝트를 기획했습니다.</p>
+<h1 id="Process">
+<a class="anchor" href="#Process" aria-hidden="true"><span class="octicon octicon-link"></span></a>Process<a class="anchor-link" href="#Process"> </a>
+</h1>
+<p><img src="/elefunt-devlog/images/copied_from_nb/data_pipeline/process.png" alt=""></p>
+<ol>
+<li>무신사 홈페이지에서 카테고리별 제품 크롤링</li>
+<li>AWS RDS에 접속하여 데이터 적재</li>
+<li>Colab에서 접속해서 ETL</li>
+</ol>
+<h1 id="Source">
+<a class="anchor" href="#Source" aria-hidden="true"><span class="octicon octicon-link"></span></a>Source<a class="anchor-link" href="#Source"> </a>
+</h1>
+<ol>
+<li>무신사 제품</li>
+<li>AWS RDS(MySQL)</li>
+<li>Colab</li>
+</ol>
+<h2 id="WHY">
+<a class="anchor" href="#WHY" aria-hidden="true"><span class="octicon octicon-link"></span></a>WHY<a class="anchor-link" href="#WHY"> </a>
+</h2>
+<ol>
+<li>기존에 있던 프로젝트 구성 당시에도 그리고 현재에도 자주 사용하고 애정있는 쇼핑몰인 무신사를 선택했습니다.</li>
+<li>최근 채용공고에 빠질수 없는 클라우드 서비스로 GCP, AWS, AZURE가 있습니다. 이 3개 중 시장 점유율이 가장 높은 AWS를 이용했습니다.</li>
+<li>MySQL은 데이터를 다루는데 매우 기초가 되는 언어라 생각되어 MySQL로 구성했습니다. 또한 제가 사용해본 경험이 있기 때문입니다.</li>
+<li>차후 파이썬, 아나콘다, 또는 개발환경이 세팅되어있지 않은 사용자가 있을 수 있고 접근 용이성이 높은 Colab을 이용할 수 있도록 했습니다. 기존 개발환경이 있으신 분들은 해당 환경을 그대로 사용해도 됩니다.
+## Library</li>
+</ol>
+<ul>
+<li>urllib.request urlopen</li>
+<li>bs4 BeautifulSoup</li>
+<li>requests</li>
+<li>re</li>
+<li>pymysql</li>
+<li>pandas</li>
+<li>numpy</li>
+<li>logging
+<div class="flash flash-success">
+    <svg class="octicon octicon-checklist octicon octicon-checklist" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path></svg>
+    <strong>Tip: </strong>해당 코드는 Github MUSINSA_DATA_PIPELINE_AWS에서 확인할 수 있습니다.
+</div>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Part-1:-데이터-수집하기">
+<a class="anchor" href="#Part-1:-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%88%98%EC%A7%91%ED%95%98%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Part 1: 데이터 수집하기<a class="anchor-link" href="#Part-1:-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%88%98%EC%A7%91%ED%95%98%EA%B8%B0"> </a>
+</h1>
+<p>해당 코드는 github의 code파일 products.ipnby에 있습니다.</p>
+<h1 id="Part-2:-AWS-RDS-&amp;-SQL">
+<a class="anchor" href="#Part-2:-AWS-RDS-&amp;-SQL" aria-hidden="true"><span class="octicon octicon-link"></span></a>Part 2: AWS RDS &amp; SQL<a class="anchor-link" href="#Part-2:-AWS-RDS-&amp;-SQL"> </a>
+</h1>
+<h2 id="RDS-생성하기">
+<a class="anchor" href="#RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>RDS 생성하기<a class="anchor-link" href="#RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0"> </a>
+</h2>
+<p>RDS에 접속하여 DB생성하기를 합니다.<br>
+저는 돈이 없는 취준생이기 때문에 Free tier로 간단하게 만들었습니다.</p>
+<h2 id="인바운드-규칙-추가하기">
+<a class="anchor" href="#%EC%9D%B8%EB%B0%94%EC%9A%B4%EB%93%9C-%EA%B7%9C%EC%B9%99-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>인바운드 규칙 추가하기<a class="anchor-link" href="#%EC%9D%B8%EB%B0%94%EC%9A%B4%EB%93%9C-%EA%B7%9C%EC%B9%99-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0"> </a>
+</h2>
+<p>RDS에 접속할 수 있는 IP를 지정하는 작업입니다. 이를 통해서 특정 IP에서 RDS에 저장된 데이터를 접근할 수 있습니다.</p>
+<h2 id="1.-RDS---데이터베이스---보안그룹">
+<a class="anchor" href="#1.-RDS---%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4---%EB%B3%B4%EC%95%88%EA%B7%B8%EB%A3%B9" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. RDS - 데이터베이스 - 보안그룹<a class="anchor-link" href="#1.-RDS---%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4---%EB%B3%B4%EC%95%88%EA%B7%B8%EB%A3%B9"> </a>
+</h2>
+<p><img src="/elefunt-devlog/images/copied_from_nb/data_pipeline/inbound_1.png" alt=""></p>
+<h2 id="2.-Edit-Inbound-rules">
+<a class="anchor" href="#2.-Edit-Inbound-rules" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Edit Inbound rules<a class="anchor-link" href="#2.-Edit-Inbound-rules"> </a>
+</h2>
+<p><img src="/elefunt-devlog/images/copied_from_nb/data_pipeline/inbound_2.png" alt=""></p>
+<h2 id="3.-규칙-추가---MySQL---IP-설정---규칙추가">
+<a class="anchor" href="#3.-%EA%B7%9C%EC%B9%99-%EC%B6%94%EA%B0%80---MySQL---IP-%EC%84%A4%EC%A0%95---%EA%B7%9C%EC%B9%99%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. 규칙 추가 - MySQL - IP 설정 - 규칙추가<a class="anchor-link" href="#3.-%EA%B7%9C%EC%B9%99-%EC%B6%94%EA%B0%80---MySQL---IP-%EC%84%A4%EC%A0%95---%EA%B7%9C%EC%B9%99%EC%B6%94%EA%B0%80"> </a>
+</h2>
+<p><img src="/elefunt-devlog/images/copied_from_nb/data_pipeline/inbound_3.png" alt=""></p>
+<ul>
+<li>모든 IP에서 접속 허용 IPv4</li>
+<li>현재 IP에서만 접속 허용 내 IP</li>
+</ul>
+<p>이제 특정 IP에서 저희가 만든 AWS RDS에 접속할 수 있습니다.</p>
+<p>저는 SQL Workbench에서 새로운 Connection을 연결해줍니다.<br>
+<img src="/elefunt-devlog/images/copied_from_nb/data_pipeline/sql_connection.png" alt=""></p>
+<ul>
+<li>connection name: 연결 이름 아무렇게 지어도 괜찮습니다.</li>
+<li>Hostname: RDS DB인스턴스의 엔드포인트</li>
+<li>Port: RDS DB인스턴스의 Port</li>
+<li>Username: DB생성시 작성한 username</li>
+<li>Password: DB생성시 작성한 Password <strong>꼭 기입해주세요</strong>
+</li>
+</ul>
+<p>다 기입한 후에 <code>Test Connection</code>으로 검증해보세요</p>
+<p>해당 코드는 github의 query파일에 있습니다</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Part-3:-외부에서-접속하기">
+<a class="anchor" href="#Part-3:-%EC%99%B8%EB%B6%80%EC%97%90%EC%84%9C-%EC%A0%91%EC%86%8D%ED%95%98%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Part 3: 외부에서 접속하기<a class="anchor-link" href="#Part-3:-%EC%99%B8%EB%B6%80%EC%97%90%EC%84%9C-%EC%A0%91%EC%86%8D%ED%95%98%EA%B8%B0"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># username= DB생성시의 이름</span>
+<span class="c1"># password= DB생성시 기입한 비밀번호</span>
+<span class="c1"># database= mysql에서 생선한 DB 이름</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="n">database</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">3306</span><span class="p">)</span>
+<span class="n">cursor</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"select * from products"</span><span class="p">)</span>
+<span class="n">result</span><span class="o">=</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="n">db</span><span class="o">.</span><span class="n">close</span>
+    
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>레이어드크루넥반팔티셔츠_긴기장[화이트]</td>
+      <td>무신사 스탠다드</td>
+      <td>13900</td>
+      <td>반팔 티셔츠</td>
+      <td>2021-10-02 16:43:01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>릴렉스핏크루넥반팔티셔츠[화이트]</td>
+      <td>무신사 스탠다드</td>
+      <td>11900</td>
+      <td>반팔 티셔츠</td>
+      <td>2021-10-02 16:43:01</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>베이식크루넥반팔티셔츠[화이트]</td>
+      <td>무신사 스탠다드</td>
+      <td>10900</td>
+      <td>반팔 티셔츠</td>
+      <td>2021-10-02 16:43:01</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>릴렉스핏크루넥반팔티셔츠[블랙]</td>
+      <td>무신사 스탠다드</td>
+      <td>11900</td>
+      <td>반팔 티셔츠</td>
+      <td>2021-10-02 16:43:01</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>EMBROIDERYHANDSOMEDANTEEWHITE</td>
+      <td>예일</td>
+      <td>27300</td>
+      <td>반팔 티셔츠</td>
+      <td>2021-10-02 16:43:01</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'name'</span><span class="p">,</span><span class="s1">'brand'</span><span class="p">,</span><span class="s1">'price'</span><span class="p">,</span><span class="s1">'category'</span><span class="p">,</span><span class="s1">'date'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>brand</th>
+      <th>price</th>
+      <th>category</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>레이어드크루넥반팔티셔츠_긴기장[화이트]</td>
+      <td>무신사 스탠다드</td>
+      <td>13900</td>
+      <td>반팔 티셔츠</td>
+      <td>2021-10-02 16:43:01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>릴렉스핏크루넥반팔티셔츠[화이트]</td>
+      <td>무신사 스탠다드</td>
+      <td>11900</td>
+      <td>반팔 티셔츠</td>
+      <td>2021-10-02 16:43:01</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>베이식크루넥반팔티셔츠[화이트]</td>
+      <td>무신사 스탠다드</td>
+      <td>10900</td>
+      <td>반팔 티셔츠</td>
+      <td>2021-10-02 16:43:01</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>릴렉스핏크루넥반팔티셔츠[블랙]</td>
+      <td>무신사 스탠다드</td>
+      <td>11900</td>
+      <td>반팔 티셔츠</td>
+      <td>2021-10-02 16:43:01</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>EMBROIDERYHANDSOMEDANTEEWHITE</td>
+      <td>예일</td>
+      <td>27300</td>
+      <td>반팔 티셔츠</td>
+      <td>2021-10-02 16:43:01</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>위와 같이 pymysql을 이용해서 데이터를 불러왔습니다. 이후에는 데이터를 이용해 ETL 및 EDA를 진행할 수 있을 것입니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="마치며">
+<a class="anchor" href="#%EB%A7%88%EC%B9%98%EB%A9%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>마치며<a class="anchor-link" href="#%EB%A7%88%EC%B9%98%EB%A9%B0"> </a>
+</h1>
+<p>약 2주 간 매일같이 한 프로젝트는 아니지만 그 사이에 배운점이 많았습니다.</p>
+<ol>
+<li>data type에 맞는 저장소를 선택해야 합니다.<br>
+현재 수집하는 데이터가 정형데이터인지 그럼 어떤 툴을 사용할 것인지 용량을 얼마나 산정해뒀는지 미리 고려해볼 것이 많다는 것을 알게되었습니다.</li>
+<li>AWS 사용법<br>
+프리티어로 만들었지만 다른 형태의 저장소도 많이 지원하는 것을 확인했습니다. 데이터를 얼마나 자주 변경하는지에 따라 S3 budgket를 사용할 수도 있고 자주 변경하지 않는다면 RDS를 사용하는것이 바람직합니다. 또한 보안설정을 통해 해당 서비스에 액세스할 수 있도록 하는 방법을 배웠습니다.</li>
+<li>코드 리뷰<br>
+작년에 작성한 코드를 현재 돌려보니 작동이 원활하지 않았습니다. 크롤링 할려는 페이지가 변경된 것도 있었습니다. 코드들을 살펴보고 조금 더 간결하고 읽기 쉽게 만들려고 노력했습니다. 특히 작년 코드에선 세일 가격을 불러오지 못했었습니다. 단지 제품의 원가만을 담았다면 이번에는 세일이 진행중이라면 세일 가격을 담을 수 있도록 했습니다.</li>
+</ol>
+<p>사실 아직 문제점도 있습니다. 아직 고객에 대한 데이터가 없으며 보안에 취약합니다. SQL서버에서 사용자의 Rule을 지정하여 원본 데이터를 훼손시키지 않도록 해야합니다.</p>
+<p>기존에 있던 프로젝트를 리팩토링하며 얻은 것이 많아서 기분이 좋습니다. 제 글을 통해서 기초적인 데이터 파이프라인 구축에 어려움이 조금이나마 덜어졌다면 좋겠습니다.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="elephantoid/elefunt-devlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/elefunt-devlog/project/2021/10/02/data-pipeline.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/elefunt-devlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/elefunt-devlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
