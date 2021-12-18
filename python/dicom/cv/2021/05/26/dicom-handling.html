@@ -117,6 +117,7 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <h2 id="pydicom">pydicom</h2>
+
 <p>최근 X-ray 의료 데이터를 다루를 캐글 대회에 참여하게 되었습니다.<br />
 처음 해보는 분야이고 매번 해봐야지 해봐야지.. 생각만 하다가 직접 맞딱드리니 어려움이 이만 저만이 아니였습니다.<br />
 <a href="https://www.kaggle.com/c/siim-covid19-detection">https://www.kaggle.com/c/siim-covid19-detection</a></p>
@@ -124,11 +125,13 @@ window.onload = wrap_img;
 <p>의료 데이터는 <code class="language-plaintext highlighter-rouge">DICOM</code> 또는 <code class="language-plaintext highlighter-rouge">NIfTI</code>라는 포맷으로 저장되어 있습니다.<br />
 SIIM 대회에서는 DICOM 파일로 데이터를 주었기 때문에 DICOM파일에 관련한 내용을 다루고자 합니다.<br />
 파이썬에서는 <code class="language-plaintext highlighter-rouge">pydicom</code>이라는 라이브러리로 다룰 수 있습니다.</p>
+
 <blockquote>
   <p>pydicom은 DICOM 파일 작업을위한 순수 Python 패키지입니다. 쉬운 “pythonic”방식으로 DICOM 데이터를 읽고, 수정하고, 쓸 수 있습니다. -<a href="https://github.com/pydicom/pydicom">pydicom 공식 깃허브</a></p>
 </blockquote>
 
 <h2 id="installation">Installation</h2>
+
 <p>Using pip:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install pydicom
@@ -159,7 +162,6 @@ dicom_paths[0:10]</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 데이터 셋 전체에서 10개의 경로를 glob 함수를 통해 출력 해보겠습니다.
 
-
 </code></pre></div></div>
 <p>[’../input/siim-covid19-detection/train/cd5dd5e6f3f5/b2ee36aa2df5/d8ba599611e5.dcm’,
  ‘../input/siim-covid19-detection/train/49358afcfb80/60a49211f5df/29b23a11d1e4.dcm’,
@@ -172,10 +174,7 @@ dicom_paths[0:10]</p>
  ‘../input/siim-covid19-detection/train/ba27bcbd6881/d300cb010b90/6a93346150a4.dcm’,
  ‘../input/siim-covid19-detection/train/e38bf848a4b2/e16ffae4da8c/5b687c54d3fd.dcm’]</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-
 ## 전처리
-
-
 
 ```python
 dicom= pydicom.read_file(dicom_paths[0])
@@ -209,6 +208,7 @@ Output 값으로 <MONOCHROME1>, <MONOCHROME2>, <PALETTE COLOR="">, <RGB> 등을 
 결국은 X-ray 이미지를 사용하고 있으니 단색 이미지 평면인 흑백이라고 알려주는 것과 같습니다.</p>
 
     <p>더 자세한 내용은 <a href="https://dicom.innolitics.com/ciods/ct-image/image-pixel/00280004">여기</a></p>
+
   </div>
 </details>
 

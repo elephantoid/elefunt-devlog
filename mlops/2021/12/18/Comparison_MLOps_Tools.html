@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>다양한 MLOps Tools: 나는 무엇을 이용해야 할까? | elefunt-devlog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="다양한 MLOps Tools: 나는 무엇을 이용해야 할까?" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Comparison MLOps Tools" />
+<meta property="og:description" content="Comparison MLOps Tools" />
+<link rel="canonical" href="https://elephantoid.github.io/elefunt-devlog/mlops/2021/12/18/Comparison_MLOps_Tools.html" />
+<meta property="og:url" content="https://elephantoid.github.io/elefunt-devlog/mlops/2021/12/18/Comparison_MLOps_Tools.html" />
+<meta property="og:site_name" content="elefunt-devlog" />
+<meta property="og:image" content="https://elephantoid.github.io/elefunt-devlog/images/MLOps/head.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-18T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"Comparison MLOps Tools","url":"https://elephantoid.github.io/elefunt-devlog/mlops/2021/12/18/Comparison_MLOps_Tools.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://elephantoid.github.io/elefunt-devlog/mlops/2021/12/18/Comparison_MLOps_Tools.html"},"headline":"다양한 MLOps Tools: 나는 무엇을 이용해야 할까?","dateModified":"2021-12-18T00:00:00-06:00","datePublished":"2021-12-18T00:00:00-06:00","image":"https://elephantoid.github.io/elefunt-devlog/images/MLOps/head.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/elefunt-devlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://elephantoid.github.io/elefunt-devlog/feed.xml" title="elefunt-devlog" /><link rel="shortcut icon" type="image/x-icon" href="/elefunt-devlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/elefunt-devlog/">elefunt-devlog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/elefunt-devlog/about/">About Me</a><a class="page-link" href="/elefunt-devlog/gitInfo/">gitInfo</a><a class="page-link" href="/elefunt-devlog/sample/">sample</a><a class="page-link" href="/elefunt-devlog/search/">Search</a><a class="page-link" href="/elefunt-devlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">다양한 MLOps Tools: 나는 무엇을 이용해야 할까?</h1><p class="page-description">Comparison MLOps Tools</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-18T00:00:00-06:00" itemprop="datePublished">
+        Dec 18, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/elefunt-devlog/categories/#MLOps">MLOps</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>목적: MLOps를 공부해보려 했는데 어디에서 부터 손을 대야 할지 모르겠으며 다양한 툴에서 헤매고 있는 제 자신을 구하고자 찾아왔습니다. 아래 원문을 번역한 글입니다.</p>
+
+<p>원문: <a href="https://www.datarevenue.com/en-blog/airflow-vs-luigi-vs-argo-vs-mlflow-vs-kubeflow">https://www.datarevenue.com/en-blog/airflow-vs-luigi-vs-argo-vs-mlflow-vs-kubeflow</a></p>
+
+<h1 id="task-orchestration-tools-and-workflows"><strong>Task orchestration tools and workflows</strong></h1>
+
+<p>작업 및 데이터 워크 플로우를 조정하기 위한 여러가지 도구들이 있습니다. 그렇기 때문에 저처럼 헤매고 있는 분들도 계시겠죠? 그래서 이 글은 가장 인기 있는 도구 중 일부를 비교하는 글입니다.</p>
+
+<ul>
+  <li>Apache Airflow 가장 인기 있는 도구이자 가장 광범위한 기능</li>
+  <li>Luigi 시작하기 더 간단한 Airflow와 유사한 도구</li>
+  <li>Argo 팀이 이미 Kubernetes를 사용하고 있을 때 자주 찾는 팀이며</li>
+  <li>Kubeflow, MLFlow 기계 학습 모델 배포 및 실험 추적과 관련된 더 많은 세부 요구 사항을 제공</li>
+</ul>
+
+<p>자세한 비교를 시작하기 전에 task 오케스트레이션과 관련된 몇 가지 더 넓은 개념을 이해하는 것이 좋다고 합니다.</p>
+
+<h1 id="what-is-task-orchestration-and-why-is-it-useful"><strong>What is task orchestration and why is it useful?</strong></h1>
+
+<p>소규모 팀은 일반적으로 작업을 수동으로 관리하는 것으로 시작합니다. (데이터 정제, 기계 학습 모델 학습, 결과 추적, 프로덕션 서버에 모델 배포) 팀과 솔루션의 규모가 커짐에 따라 반복 단계의 수도 커집니다. 그래서 작업을 안정적으로 실행하는 것이 더욱 중요해집니다.</p>
+
+<p>이러한 작업이 서로 의존적으로 더 복잡해집니다. 시작할 때 일주일에 한 번 또는 한 달에 한 번 실행해야 하는 작업 <code class="language-plaintext highlighter-rouge">파이프라인</code>이 있을 수 있습니다. 이러한 작업은 특정 순서대로 실행해야 합니다. 작업이 커지면서 이 파이프라인은 동적 분기가 있는 <code class="language-plaintext highlighter-rouge">네트워크</code>가 됩니다. 어떤 경우에는 일부 작업이 다른 작업을 시작하며 이러한 작업은 먼저 실행되는 다른 여러 작업에 따라 달라질 수 있습니다.(아래 사진 오른쪽 참조)</p>
+
+<p>이 네트워크는 각 작업과 이들 간의 종속성을 모델링하는 DAG(Directed Acyclic Graph)로 모델링할 수 있습니다.</p>
+
+<p><img src="https://global-uploads.webflow.com/5d3ec351b1eba4332d213004/5f3d5fc803a7a16ca9eda2c3_v545yQmSJm0bgn5gGK1gmAK4Jw1W232zutQ3zs32lDq0HxhsteO97EG2a7NnoObsNoE4Zl0084kpBwZCt7T-BiDil1Z-MvaE_s8C0Ytc7gN5bFnGibnOxWAbOnraEXLxZvAi5HcL.png" alt="https://global-uploads.webflow.com/5d3ec351b1eba4332d213004/5f3d5fc803a7a16ca9eda2c3_v545yQmSJm0bgn5gGK1gmAK4Jw1W232zutQ3zs32lDq0HxhsteO97EG2a7NnoObsNoE4Zl0084kpBwZCt7T-BiDil1Z-MvaE_s8C0Ytc7gN5bFnGibnOxWAbOnraEXLxZvAi5HcL.png" /></p>
+
+<p>A pipeline is a limited DAG where each task has one upstream and one downstream dependency at most.</p>
+
+<p>워크플로우 오케스트레이션 도구를 사용하면 모든 작업과 작업이 서로 의존하는 방식을 지정하여 DAG를 정의할 수 있습니다. 그런 다음 오케스트레이션 도구는 다음 작업을 실행하기 전에 실패한 작업을 다시 시도하여 정확한 순서로 일정에 따라 이러한 작업을 실행합니다. 또한 진행 상황을 모니터링하고 실패가 발생하면 팀에 알립니다. 와..</p>
+
+<p>일반적으로 CI/CD 도구하면 떠오르는 Jenkins는 코드를 자동으로 테스트하고 배포하는데 사용되며 확실히 작업 오케스트레이션 도구 사이에는 강력한 유사점이 있지만 중요한 차이점도 있습니다.
+이론상으로는 이러한 CI/CD 도구를 사용하여 동적이고 상호 연결된 작업을 오케스트레이션할 수 있지만 특정 수준의 복잡성에서는 Apache Airflow와 같은 보다 일반적인 도구를 대신 사용하는 것이 더 쉽다는 것을 알게 될 것입니다.</p>
+
+<p>전반적으로 모든 오케스트레이션 도구의 초점은 모든 자동화 작업을 위한 가상 명령 센터인 <code class="language-plaintext highlighter-rouge">중앙 집중식</code>, <code class="language-plaintext highlighter-rouge">반복 가능</code>, <code class="language-plaintext highlighter-rouge">재현 가능</code> 및 <code class="language-plaintext highlighter-rouge">효율적인</code> 워크 플로우를 보장하는 것입니다. 이러한 맥락을 염두에 두고 가장 인기 있는 워크플로우 도구 중 일부가 어떻게 구성되어 있는지 살펴보겠습니다.</p>
+
+<h1 id="luigi">Luigi</h1>
+
+<p>Luigi는 Python 라이브러리이며 pip 및 conda와 같은 Python 패키지 관리 도구와 함께 설치할 수 있습니다.<br />
+Python 개발자가 쉽게 온보딩하는 것을 목표로 하며 Airflow보다 간단하고 가벼운 것을 목표로 하고 있습니다.<br />
+Python 개발자를 위해 DAG task 정의를 Python으로 할 수 있습니다. 또한, 학습 곡선이 쉬운편이라 시간을 조금만 투자해도 초보자에서 벗어날 수 있습니다.
+소규모 팀이 있고 빠르게 시작해야 하고 데이터 정리에서 모델 배포에 이르기까지 다양한 작업을 오케스트레이션해야 하는 경우 사용을 권장드립니다.</p>
+
+<h1 id="airflow">Airflow</h1>
+
+<p>Airflow는 Apache 프로젝트이며 완전히 오픈 소스이며 일정 관리와 관련하여 훨씬 더 강력하며 작업 실행 시간을 설정하는 데 도움이 되는 캘린더 UI를 제공합니다.<br />
+Airflow는 Python 광범위 에코시스템 내에 있습니다. 또한, DAG 정의를 Python으로 합니다 (Airflow에 특정한 방식으로 수행)<br />
+Airflow는 일반적인 작업 오케스트레이션 플랫폼이며 다양한 작업을 실행할 수 있는 툴이 높은 성숙도를 가집니다.<br />
+Airflow에는 더 넓은 범위의 사용 사례가 있으며 모든 작업 집합을 실행하는 데 사용할 수 있습니다. Airflow는 작업을 관리하고 예약하기 위한 구성 요소 및 플러그인 세트입니다.</p>
+
+<p>팀 규모가 더 크고 학습 곡선을 넘고 나서 더 많은 리소스를 투입해 초기 생산성에 영향을 끼칠 수 있는 경우 Airflow</p>
+
+<h1 id="kubeflow">Kubeflow</h1>
+
+<p>Kubeflow는 특히 기계 학습 워크플로를 위한 Kubernetes 기반 도구입니다. 이름에서 알 수 있다시피 Kubernetes에 의존적입니다.<br />
+그래서 Kubeflow를 사용하면 각 단계가 Kubernetes 포드인 전체 DAG를 빌드할 수 있습니다.<br />
+Kubeflow에는 실험 추적, 하이퍼 매개변수 최적화 및 Jupyter 노트북 제공을 위한 사전 구축된 패턴이 있습니다. Kubeflow는 <code class="language-plaintext highlighter-rouge">Kubeflow</code>와 <code class="language-plaintext highlighter-rouge">Kubeflow Pipelines</code>의 두 가지 고유한 구성 요소로 구성됩니다. 후자는 모델 배포 및 CI/CD에 중점을 두고 있으며 주요 Kubeflow 기능과 독립적으로 사용할 수 있습니다.<br />
+Kubeflow Pipelines 구성 요소를 사용하면 DAG를 지정할 수 있지만 일반 작업보다 배포 및 모델 제공에 더 중점을 둡니다.</p>
+
+<p>이미 Kubernetes를 사용 중이고 기계 학습 솔루션에 대해 즉시 사용 가능한 더 많은 패턴을 원하는 경우 사용을 권장드립니다.</p>
+
+<h1 id="mlflow"><strong>MLFlow</strong></h1>
+
+<p>MLFlow는 기계 학습 수명 주기 및 실험을 관리하고 추적하는 데 도움이 되는 보다 전문화된 도구입니다.<br />
+MLFlow를 기계 학습 코드로 function 기능을 사용하여 정보(예: 사용 중인 매개변수)를 기록, 아티팩트(예: 훈련된 모델)를 직접 가져올 수 있습니다. MLFlow를 CLT(Command-line tool)로 사용하여 일반적인 도구(예: scikit-learn)로 빌드된 모델을 제공하거나 일반적인 플랫폼(예: AzureML 또는 Amazon SageMaker)에 배포할 수도 있습니다.</p>
+
+<ol>
+  <li>추적을 실험하는 더 간단한 접근 방식을 원하고 Amazon Sagemaker와 같은 관리형 플랫폼에 배포하려는 경우</li>
+  <li>기계 학습 실험 및 배포를 관리하는 독창적이고 즉시 사용 가능한 방법을 원하는 경우</li>
+</ol>
+
+<p>1와 2의 조건에 맞는 다면 사용을 권장드립니다.</p>
+
+<h1 id="argo">Argo</h1>
+
+<p>Argo는 작업을 Kubernetes 포드로 정의하고 YAML로 정의된 DAG로 실행할 수 있는 작업 오케스트레이션 도구입니다.<br />
+Argo는 Kubernetes 위에 구축되었으며 각 작업은 별도의 Kubernetes pod로 실행됩니다. 이는 대부분의 인프라에 이미 Kubernetes를 사용하고 있는 경우 편리할 수 있지만 그렇지 않은 경우 복잡성이 추가됩니다.</p>
+
+<p>이미 Kubernetes에 투자했고 서로 다른 스택에 작성된 다양한 작업을 실행하려는 경우 사용을 권장드립니다.</p>
+
+<h1 id="prefect">Prefect</h1>
+
+<p>Prefect는 Airflow가 너무 복잡하고 경직되어 매우 민첩한 환경에 적합하지 않다는 것을 포함하여 Airflow에 대해 인지된 많은 문제를 해결하기 위해 제작되었습니다.<br />
+Prefect를 사용하면 모든 Python 함수가 작업이 될 수 있으며 모든 것이 예상대로 실행되는 한 Prefect는 방해가 되지 않고 상황이 잘못될 때만 지원을 시작합니다.<br />
+Prefect는 Luigi처럼 Python 개발자가 쉽게 온보딩하는 것을 목표로 합니다. 하지만 Prefect는 Luigi보다 워크플로가 구조화되는 방식에 대해 더 적은 가정을 하고 모든 Python 기능을 작업으로 전환할 수 있습니다. Prefect는 Luigi보다 덜 성숙하고 <a href="https://en.wikipedia.org/wiki/Open-core_model">오픈 코어</a> 모델입니다</p>
+
+<p>가능한 한 빨리 경량화하고 실행해야 하는 경우 사용을 권장드립니다.</p>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="elephantoid/elefunt-devlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/elefunt-devlog/mlops/2021/12/18/Comparison_MLOps_Tools.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/elefunt-devlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/elefunt-devlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

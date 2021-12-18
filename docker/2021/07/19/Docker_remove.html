@@ -116,6 +116,7 @@ window.onload = wrap_img;
 하지만 로컬 docker의 wsl파일에 있는 .vhdx파일의 용량이 줄어들지는 않았습니다.</p>
 
 <h1 id="도커-image-container-삭제하기window">도커 image, container 삭제하기(window)</h1>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 도커 all stop
 docker kill $(docker ps -q)
 # 도커에 있는 모든 container 삭제
@@ -146,14 +147,13 @@ WARNING! This will remove:
 
 <blockquote>
   <p>Notice: 작업을 실행하기 전 도커를 종료해주세요.<br />
-미리 도커를 종료하지 않으면 <code class="language-plaintext highlighter-rouge">Optimize-VHD : 가상 디스크를 압축하지 못했습니다.
-시스템에서 'C:\Users\all7j\AppData\Local\Docker\wsl\data\ext4.vhdx'을(를) 압축하지 못했습니다. 다른 프로세스가 파일을
-사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.(0x80070020).</code> 와 같은 에러 메세지를 만날 수 있습니다.</p>
+미리 도커를 종료하지 않으면 <code class="language-plaintext highlighter-rouge">Optimize-VHD : 가상 디스크를 압축하지 못했습니다. 시스템에서 'C:\Users\all7j\AppData\Local\Docker\wsl\data\ext4.vhdx'을(를) 압축하지 못했습니다. 다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.(0x80070020).</code> 와 같은 에러 메세지를 만날 수 있습니다.</p>
 </blockquote>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Optimize-VHD -Path c:\path\to\data.vhdx -Mode Full
 
 </code></pre></div></div>
+
 <p>위 -Path 뒤에 사용자의 .vhdx 파일경로를 대신해서 넣어주면 됩니다.</p>
 
 <p><img src="/elefunt-devlog/images/docker/reduce/d1.PNG" alt="" /></p>
@@ -172,6 +172,7 @@ WARNING! This will remove:
 <p>오늘 포스트는 여기서 마치겠습니다.</p>
 
 <h1 id="references">References</h1>
+
 <p><a href="https://dev.to/marzelin/how-to-reduce-size-of-docker-data-volume-in-docker-desktop-for-windows-v2-5d38">https://dev.to/marzelin/how-to-reduce-size-of-docker-data-volume-in-docker-desktop-for-windows-v2-5d38</a><br />
 <a href="https://brunch.co.kr/@hopeless/10">https://brunch.co.kr/@hopeless/10</a></p>
 
