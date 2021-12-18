@@ -10,24 +10,26 @@ image: "/images/pydicom/image.PNG"
 ---
 
 ## pydicom
+
 최근 X-ray 의료 데이터를 다루를 캐글 대회에 참여하게 되었습니다.  
 처음 해보는 분야이고 매번 해봐야지 해봐야지.. 생각만 하다가 직접 맞딱드리니 어려움이 이만 저만이 아니였습니다.  
 <https://www.kaggle.com/c/siim-covid19-detection>
 
-
 의료 데이터는 `DICOM` 또는 `NIfTI`라는 포맷으로 저장되어 있습니다.  
 SIIM 대회에서는 DICOM 파일로 데이터를 주었기 때문에 DICOM파일에 관련한 내용을 다루고자 합니다.  
-파이썬에서는 `pydicom`이라는 라이브러리로 다룰 수 있습니다.  
+파이썬에서는 `pydicom`이라는 라이브러리로 다룰 수 있습니다.
+
 > pydicom은 DICOM 파일 작업을위한 순수 Python 패키지입니다. 쉬운 "pythonic"방식으로 DICOM 데이터를 읽고, 수정하고, 쓸 수 있습니다. -[pydicom 공식 깃허브](https://github.com/pydicom/pydicom)
 
 ## Installation
-Using pip:  
+
+Using pip:
 
 ```
 pip install pydicom
 ```
 
-Using conda:  
+Using conda:
 
 ```
 conda install -c conda-forge pydicom
@@ -35,9 +37,7 @@ conda install -c conda-forge pydicom
 
 그 외 설치 가이드는 [여기](https://pydicom.github.io/pydicom/stable/tutorials/installation.html)를 눌러주세요
 
-
 ## Example
-
 
 ```python import-lib
 import pydicom
@@ -57,7 +57,6 @@ dicom_paths[0:10]
 
 데이터 셋 전체에서 10개의 경로를 glob 함수를 통해 출력 해보겠습니다.
 
-
 ```
 ['../input/siim-covid19-detection/train/cd5dd5e6f3f5/b2ee36aa2df5/d8ba599611e5.dcm',
  '../input/siim-covid19-detection/train/49358afcfb80/60a49211f5df/29b23a11d1e4.dcm',
@@ -71,10 +70,7 @@ dicom_paths[0:10]
  '../input/siim-covid19-detection/train/e38bf848a4b2/e16ffae4da8c/5b687c54d3fd.dcm']
 ```
 
-
 ## 전처리
-
-
 
 ```python
 dicom= pydicom.read_file(dicom_paths[0])
@@ -86,7 +82,6 @@ data= data - np.min(data)
 data= data / np.max(data)
 data= (data*255).astype(np.uint8)
 ```
-
 
 \* dicom에 저는 dicom_paths중 0번째 값을 넣어줬습니다
 VOI LUT (DICOM 장치에서 사용 가능한 경우)는 원시 DICOM 데이터를 "인간 친화적인"보기로 변환하는 데 사용됩니다.  
@@ -110,6 +105,7 @@ MONOCHOME1이란?
 결국은 X-ray 이미지를 사용하고 있으니 단색 이미지 평면인 흑백이라고 알려주는 것과 같습니다.
 
 더 자세한 내용은 [여기](https://dicom.innolitics.com/ciods/ct-image/image-pixel/00280004)
+
 </div>
 </details>
 
@@ -124,7 +120,7 @@ MONOCHOME1이란?
  [ 46  40  42 ...  20   0   0]
  [ 43  41  45 ...  20   0   0]
  [ 37  40  41 ...  12   0   0]]
- ```
+```
 
 ## 시각화
 
@@ -139,9 +135,8 @@ plot_img(data)
 
 ![]({{ site.baseurl }}/images/pydicom/image.PNG)
 
-
 오늘은 dicom파일을 다루는 기초적인 방법을 알아봤습니다.  
 이 내용이 읽으시는 분들에게 유익했으면 좋겠습니다.
 
 > 출처: http://dicom.nema.org/medical/Dicom/2018d/output/chtml/part03/sect_C.11.2.html
-https://dicom.innolitics.com/ciods/ct-image/image-pixel/00280004
+> https://dicom.innolitics.com/ciods/ct-image/image-pixel/00280004
