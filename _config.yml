@@ -7,7 +7,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: elefunt-devlog
-description: An easy to use blogging platform with support for Jupyter Notebooks.
+description: This is development blog for ML/DL.
 github_username: elephantoid
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "elefunt-devlog"
