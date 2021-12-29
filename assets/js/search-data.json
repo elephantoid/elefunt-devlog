@@ -129,17 +129,6 @@
   
 
   
-      ,"page4": {
-          "title": "sample",
-          "content": "sample . sample | sample2 | Hello | .",
-          "url": "https://elephantoid.github.io/elefunt-devlog/sample/",
-          "relUrl": "/sample/",
-          "date": ""
-      }
-      
-  
-
-  
   
 
   
@@ -163,7 +152,7 @@
   
 
   
-      ,"page14": {
+      ,"page13": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://elephantoid.github.io/elefunt-devlog/robots.txt",
