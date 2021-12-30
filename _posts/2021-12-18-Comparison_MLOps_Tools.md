@@ -9,13 +9,13 @@ categories: [MLOps]
 image: "/images/MLOps/head.png"
 ---
 
-목적: MLOps를 공부해보려 했는데 어디에서 부터 손을 대야 할지 모르겠으며 다양한 툴에서 헤매고 있는 제 자신을 구하고자 찾아왔습니다. 아래 원문을 번역한 글입니다.
+목적: MLOps를 공부해보려 했는데 어디에서부터 손을 대야 할지 모르겠으며 다양한 도구에서 헤매고 있는 저 자신을 구하고자 찾아왔습니다. 아래 원문을 번역한 글입니다.
 
 원문: [https://www.datarevenue.com/en-blog/airflow-vs-luigi-vs-argo-vs-mlflow-vs-kubeflow](https://www.datarevenue.com/en-blog/airflow-vs-luigi-vs-argo-vs-mlflow-vs-kubeflow)
 
 # **Task orchestration tools and workflows**
 
-작업 및 데이터 워크 플로우를 조정하기 위한 여러가지 도구들이 있습니다. 그렇기 때문에 저처럼 헤매고 있는 분들도 계시겠죠? 그래서 이 글은 가장 인기 있는 도구 중 일부를 비교하는 글입니다.
+작업 및 데이터 워크플로우를 조정하기 위한 여러 가지 도구들이 있습니다. 그러므로 저처럼 헤매고 있는 분들도 계시겠죠? 그래서 이 글은 가장 인기 있는 도구 중 일부를 비교하는 글입니다.
 
 - Apache Airflow 가장 인기 있는 도구이자 가장 광범위한 기능
 - Luigi 시작하기 더 간단한 Airflow와 유사한 도구
@@ -66,24 +66,24 @@ Kubeflow는 특히 기계 학습 워크플로를 위한 Kubernetes 기반 도구
 Kubeflow에는 실험 추적, 하이퍼 매개변수 최적화 및 Jupyter 노트북 제공을 위한 사전 구축된 패턴이 있습니다. Kubeflow는 `Kubeflow`와 `Kubeflow Pipelines`의 두 가지 고유한 구성 요소로 구성됩니다. 후자는 모델 배포 및 CI/CD에 중점을 두고 있으며 주요 Kubeflow 기능과 독립적으로 사용할 수 있습니다.  
 Kubeflow Pipelines 구성 요소를 사용하면 DAG를 지정할 수 있지만 일반 작업보다 배포 및 모델 제공에 더 중점을 둡니다.
 
-이미 Kubernetes를 사용 중이고 기계 학습 솔루션에 대해 즉시 사용 가능한 더 많은 패턴을 원하는 경우 사용을 권장드립니다.
+이미 Kubernetes를 사용 중이고 기계 학습 솔루션에 대해 즉시 사용 가능한 더 많은 패턴을 원하는 경우 사용을 권장해 드립니다.
 
 # **MLFlow**
 
-MLFlow는 기계 학습 수명 주기 및 실험을 관리하고 추적하는 데 도움이 되는 보다 전문화된 도구입니다.  
+MLFlow는 기계 학습 수명 주기 및 실험을 관리하고 추적하는 데 도움이 돼는 보다 전문화된 도구입니다.
 MLFlow를 기계 학습 코드로 function 기능을 사용하여 정보(예: 사용 중인 매개변수)를 기록, 아티팩트(예: 훈련된 모델)를 직접 가져올 수 있습니다. MLFlow를 CLT(Command-line tool)로 사용하여 일반적인 도구(예: scikit-learn)로 빌드된 모델을 제공하거나 일반적인 플랫폼(예: AzureML 또는 Amazon SageMaker)에 배포할 수도 있습니다.
 
 1. 추적을 실험하는 더 간단한 접근 방식을 원하고 Amazon Sagemaker와 같은 관리형 플랫폼에 배포하려는 경우
 2. 기계 학습 실험 및 배포를 관리하는 독창적이고 즉시 사용 가능한 방법을 원하는 경우
 
-1와 2의 조건에 맞는 다면 사용을 권장드립니다.
+1과 2의 조건에 맞는다면 사용을 권장해 드립니다.
 
 # Argo
 
 Argo는 작업을 Kubernetes 포드로 정의하고 YAML로 정의된 DAG로 실행할 수 있는 작업 오케스트레이션 도구입니다.  
 Argo는 Kubernetes 위에 구축되었으며 각 작업은 별도의 Kubernetes pod로 실행됩니다. 이는 대부분의 인프라에 이미 Kubernetes를 사용하고 있는 경우 편리할 수 있지만 그렇지 않은 경우 복잡성이 추가됩니다.
 
-이미 Kubernetes에 투자했고 서로 다른 스택에 작성된 다양한 작업을 실행하려는 경우 사용을 권장드립니다.
+이미 Kubernetes에 투자했고 서로 다른 스택에 작성된 다양한 작업을 실행하려는 경우 사용을 권장해 드립니다.
 
 # Prefect
 
@@ -91,4 +91,4 @@ Prefect는 Airflow가 너무 복잡하고 경직되어 매우 민첩한 환경�
 Prefect를 사용하면 모든 Python 함수가 작업이 될 수 있으며 모든 것이 예상대로 실행되는 한 Prefect는 방해가 되지 않고 상황이 잘못될 때만 지원을 시작합니다.  
 Prefect는 Luigi처럼 Python 개발자가 쉽게 온보딩하는 것을 목표로 합니다. 하지만 Prefect는 Luigi보다 워크플로가 구조화되는 방식에 대해 더 적은 가정을 하고 모든 Python 기능을 작업으로 전환할 수 있습니다. Prefect는 Luigi보다 덜 성숙하고 [오픈 코어](https://en.wikipedia.org/wiki/Open-core_model) 모델입니다
 
-가능한 한 빨리 경량화하고 실행해야 하는 경우 사용을 권장드립니다.
+가능한 한 빨리 경량화하고 실행해야 하는 경우 사용을 권장해 드립니다.
