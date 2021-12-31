@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>MLOps 기초: 1 주차 | elefunt-devlog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="MLOps 기초: 1 주차" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="W&amp;B" />
+<meta property="og:description" content="W&amp;B" />
+<link rel="canonical" href="https://elephantoid.github.io/elefunt-devlog/2021/12/30/MLOps_week1.html" />
+<meta property="og:url" content="https://elephantoid.github.io/elefunt-devlog/2021/12/30/MLOps_week1.html" />
+<meta property="og:site_name" content="elefunt-devlog" />
+<meta property="og:image" content="https://elephantoid.github.io/elefunt-devlog/images/MLOps/mlops_1.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-30T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"W&amp;B","url":"https://elephantoid.github.io/elefunt-devlog/2021/12/30/MLOps_week1.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://elephantoid.github.io/elefunt-devlog/2021/12/30/MLOps_week1.html"},"headline":"MLOps 기초: 1 주차","dateModified":"2021-12-30T00:00:00-06:00","datePublished":"2021-12-30T00:00:00-06:00","image":"https://elephantoid.github.io/elefunt-devlog/images/MLOps/mlops_1.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/elefunt-devlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://elephantoid.github.io/elefunt-devlog/feed.xml" title="elefunt-devlog" /><link rel="shortcut icon" type="image/x-icon" href="/elefunt-devlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/elefunt-devlog/">elefunt-devlog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/elefunt-devlog/about/">About Me</a><a class="page-link" href="/elefunt-devlog/gitInfo/">gitInfo</a><a class="page-link" href="/elefunt-devlog/search/">Search</a><a class="page-link" href="/elefunt-devlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">MLOps 기초: 1 주차</h1><p class="page-description">W&B</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-30T00:00:00-06:00" itemprop="datePublished">
+        Dec 30, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>이제는 많은 분들이 알고 계신,,,</p>
+
+<p>또 누구에게는 꽤 친숙한,,,</p>
+
+<p>네. 1 주차는 **<code class="language-plaintext highlighter-rouge">Weights and Bias(**W&amp;B)</code>입니다</p>
+
+<p>사실 이번년도 상반기에 가짜 연구소에서 해커톤을 진행했었습니다. 그 때 우연히 참가하게 되어 Baseline을 설명해주시면서 이 모니터링 도구인 W&amp;B를 설명해주셨었는데요. 한 두 번 쓰고 지속적으로 활용하지 못했던 것 같습니다. 이 기회를 통해서 좀 더 친해질려고 합니다.</p>
+
+<p><a href="https://github.com/graviraja/MLOps-Basics">MLOps-Basics 깃헙</a></p>
+
+<blockquote>
+  <p>Notice: 0주차의 transformer 모델을 잘 공부하고 오셔야합니다. 해당 모델을 개선하는 방향으로 시작됩니다.</p>
+</blockquote>
+
+<blockquote>
+  <p>실행환경: Colab</p>
+
+  <p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4e18ed11-9df2-4ba3-81f4-6cee5669fa0a/Untitled.png" alt="Untitled" /></p>
+
+  <p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/748ae28e-97fd-4703-acfa-f0990eba00de/Untitled.png" alt="Untitled" /></p>
+</blockquote>
+
+<h1 id="ml-모델-모니터링-모델을-모니터링-해야-하는-이유는-무엇인가요">ML 모델 모니터링 모델을 모니터링 해야 하는 이유는 무엇인가요?</h1>
+
+<p>많은 이유가 있습니다. 예측의 정확성을 이해하고 예측 오류를 방지하며 모델을 조정하여 완벽하게 만들 수 있습니다.</p>
+
+<p>일반적으로 하이퍼 파라미터를 조정하고, 성능을 테스트하기 위해 다른 모델을 시도하고, 모델과 입력 데이터 간의 연결을 확인하고, 고급 테스트를 수행하여 실험을 실행합니다.(엄청난 시간과 노력이 필요하겠죠..) 그런데 이 모든 것을 한 곳에 기록하면 더 빠르고 더 나은 통찰력을 얻는 데 도움이 됩니다.</p>
+
+<p>모델이 원활하게 작동하는지 확인하는 가장 쉬운 방법은 <code class="language-plaintext highlighter-rouge">ML 모델 모니터링 도구</code>를 사용하는 것입니다.</p>
+
+<p>또한 전용 도구를 사용하여 팀과 협업하고, 다른 사람들과 작업을 공유할 수 있습니다. 팀이 협업하고, 모델 생성 및 추가 모니터링에 참여할 수 있는 공유 공간입니다. 모델에서 발생하는 상황에 대한 실시간 통찰력이 있으면 아이디어, 생각 및 관찰을 교환하고 오류를 찾기가 더 쉽습니다. 기계 학습을 모니터링하는 데 사용할 수 있는 라이브러리가 많이 있습니다.</p>
+
+<ul>
+  <li>Comet</li>
+  <li>MLFlow</li>
+  <li>Neptune</li>
+  <li>TensorBoard</li>
+  <li>Weights and Bias</li>
+  <li>and many more</li>
+</ul>
+
+<p>이 게시물에서는 다음 주제를 다룰 것입니다.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">W&amp;B로 기본 로깅을 구성하는 방법</code></li>
+  <li><code class="language-plaintext highlighter-rouge">메트릭을 계산하고 W&amp;B에 기록하는 방법</code></li>
+  <li><code class="language-plaintext highlighter-rouge">W&amp;B에 플롯을 추가하는 방법</code></li>
+  <li><code class="language-plaintext highlighter-rouge">W&amp;B에 데이터 샘플을 추가하는 방법</code></li>
+</ol>
+
+<blockquote>
+  <p>참고: 기계 학습, Pytorch Lightning에 대한 기본 지식이 필요합니다.</p>
+</blockquote>
+
+<h1 id="weights-and-bias-configuration"><strong>Weights and Bias Configuration</strong></h1>
+
+<p>W&amp;B를 이용하기 위해서는 계정을 생성해야 합니다. (공공 프로젝트 및 100GB 스토리지의 경우 무료). 계정이 생성되면 로그인해야 합니다</p>
+
+<p>🔎<strong><a href="https://wandb.ai/authorize">https://wandb.ai/authorize</a></strong></p>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5f871f00-0777-476b-b6cc-883d32ec6bb1/Untitled.png" alt="간편하게 Github을 통해 로그인했습니다." /></p>
+
+<p>간편하게 Github을 통해 로그인했습니다.</p>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bb31a805-e91c-4399-835a-63e4d7a738fd/Untitled.png" alt="Untitled" /></p>
+
+<p>로그인 하게 되면 바로 인증을 위한 키를 받을 수 있습니다.</p>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a355c704-93f4-4c2a-b6a8-1a74e6cc7dc9/Untitled.png" alt="Untitled" /></p>
+
+<p><strong>인증을 위한 키를 여기에 넣으시면 됩니다!</strong></p>
+
+<p>로그인이 잘 되었는지 궁금하시다면 다시 실행해 보세요. 잘 되었다면 아래와 같이 나옵니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">wandb: Currently logged in as: elefun (use </code>wandb login –relogin<code class="language-plaintext highlighter-rouge"> to force relogin)</code></p>
+
+<h1 id="configuring">📌<strong>Configuring</strong></h1>
+
+<p>W&amp;B에서 프로젝트를 생성하고 여기에 같은 이름을 사용하세요.
+모든 실험이 해당 프로젝트에 로그인 되어 기록 되도록 합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pytorch_lightning.loggers</span> <span class="kn">import</span> <span class="n">WandbLogger</span>
+<span class="n">wandb_logger</span> <span class="o">=</span> <span class="n">WandbLogger</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="s">"MLOps Basics"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>이제 <code class="language-plaintext highlighter-rouge">logger</code>를 <code class="language-plaintext highlighter-rouge">Trainer</code>로 전달합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="p">.</span><span class="n">Trainer</span><span class="p">(</span>
+        <span class="n">max_epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">logger</span><span class="o">=</span><span class="n">wandb_logger</span><span class="p">,</span>
+        <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">checkpoint_callback</span><span class="p">],</span>
+    <span class="p">)</span>
+</code></pre></div></div>
+
+<p>이제 모든 로그는 W&amp;B에 기록될 것입니다.</p>
+
+<hr />
+
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/72d03066-d450-4e05-a91f-a8783b6396cf/Untitled.png" alt="Untitled" /></p>
+
+<p>PyCharm을 이용하시는 분들은 이렇게 하시면 됩니다.</p>
+
+<ol>
+  <li>터미널에서 <code class="language-plaintext highlighter-rouge">wandb init</code> 으로 한 번 초기화 시키기</li>
+  <li><code class="language-plaintext highlighter-rouge">(3) Create New</code> 옵션으로 레포 만들기</li>
+  <li><a href="http://train.py">train.py</a>에 <code class="language-plaintext highlighter-rouge">wandb.init(project="mlops-basics")</code> 추가하기</li>
+</ol>
+
+<h1 id="metrics">📐<strong>Metrics</strong></h1>
+
+<p>Metrics 계산은 때때로 어려울 수 있습니다. 다행히 pytorch lighting 팀은 모든 주요 Metrics을 포함하는 라이브러리 <code class="language-plaintext highlighter-rouge">torchmetrics</code>을 구축하고 있습니다. 자세한 내용은 <a href="https://torchmetrics.readthedocs.io/en/latest/">설명서</a>를 확인하십시오.</p>
+
+<p>문제는 분류에 관한 것이므로 다음과 같은 Metrics을 계산하는 방법을 살펴보겠습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Accuracy</code>, <code class="language-plaintext highlighter-rouge">Precision</code>, <code class="language-plaintext highlighter-rouge">Recall</code>, <code class="language-plaintext highlighter-rouge">F1</code></p>
+
+<p>일단 import를 해야겠죠</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torchmetrics</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">__init__</code> 에 metrics을 선언해줍니다</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ColaModel</span><span class="p">(</span><span class="n">pl</span><span class="p">.</span><span class="n">LightningModule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s">"google/bert_uncased_L-2_H-128_A-2"</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">3e-5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">train_accuracy_metric</span> <span class="o">=</span> <span class="n">torchmetrics</span><span class="p">.</span><span class="n">Accuracy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">val_accuracy_metric</span> <span class="o">=</span> <span class="n">torchmetrics</span><span class="p">.</span><span class="n">Accuracy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">f1_metric</span> <span class="o">=</span> <span class="n">torchmetrics</span><span class="p">.</span><span class="n">F1</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">num_classes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">precision_macro_metric</span> <span class="o">=</span> <span class="n">torchmetrics</span><span class="p">.</span><span class="n">Precision</span><span class="p">(</span>
+            <span class="n">average</span><span class="o">=</span><span class="s">"macro"</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">num_classes</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">recall_macro_metric</span> <span class="o">=</span> <span class="n">torchmetrics</span><span class="p">.</span><span class="n">Recall</span><span class="p">(</span>
+            <span class="n">average</span><span class="o">=</span><span class="s">"macro"</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">num_classes</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">precision_micro_metric</span> <span class="o">=</span> <span class="n">torchmetrics</span><span class="p">.</span><span class="n">Precision</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="s">"micro"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">recall_micro_metric</span> <span class="o">=</span> <span class="n">torchmetrics</span><span class="p">.</span><span class="n">Recall</span><span class="p">(</span><span class="n">average</span><span class="o">=</span><span class="s">"micro"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>위와 같이 해두면 학습할 때, 검증할 때, 테스트할 때 계산할 수 있습니다.</p>
+
+<p>Pytorch Lightning Module ⚡️에는 메트릭 계산을 구현할 위치를 쉽게 지정할 수 있는 다양한 방법이 있습니다.</p>
+
+<p>일반적으로 계산되는 두 가지 주요 방법은 다음과 같습니다.</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">training_step</code></strong>: training data 배치가 처리되는 곳입니다.  <strong><code class="language-plaintext highlighter-rouge">training loss</code></strong>, <strong><code class="language-plaintext highlighter-rouge">training_accuracy</code></strong> 이런 메트릭이 여기서 계산 됩니다</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">validation_step</code></strong>: validation data 배치가 처리되는 곳입니다. <strong><code class="language-plaintext highlighter-rouge">validation_loss</code></strong>, <strong><code class="language-plaintext highlighter-rouge">validation_accuracy</code></strong> 이런 메트릭이 여기서 계산 됩니다.</li>
+</ul>
+
+<p>다른 방법도 사용할 수 있습니다.</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">training_epoch_end</code></strong>: 모든 훈련 에포크가 끝날 때 호출됩니다. <code class="language-plaintext highlighter-rouge">training_step</code>이 반환하는 모든 데이터는 여기에서 집계할 수 있습니다.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">validation_epoch_end</code></strong>: 모든 훈련 에포크가 끝날 때 호출됩니다. <code class="language-plaintext highlighter-rouge">training_step</code>이 반환하는 모든 데이터는 여기에서 집계할 수 있습니다.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">test_step</code></strong>: 이것은 trainer가 테스트 메소드 즉, <code class="language-plaintext highlighter-rouge">trainer.test()</code>로 호출될 때 호출됩니다.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">test_epoch_end</code></strong>: 모든 테스트 배치가 끝날 때 호출됩니다.</li>
+</ul>
+
+<p>로깅에 사용할 수 있는 몇 가지 구성</p>
+
+<ul>
+  <li>Setting <strong><code class="language-plaintext highlighter-rouge">prog_bar=True</code> 진행률 표시줄에 메트릭을 표시할 수 있습니다.</strong></li>
+  <li>Setting <strong><code class="language-plaintext highlighter-rouge">on_epoch=True</code></strong>, 메트릭은 한 에포크의 일괄 처리에서 집계되고 평균 처리됩니다</li>
+  <li>Setting <strong><code class="language-plaintext highlighter-rouge">on_step=True</code></strong>, 각 배치에 대해 기록됩니다. (useful for loss)</li>
+</ul>
+
+<p>By default:</p>
+
+<ul>
+  <li>Logging in <strong><code class="language-plaintext highlighter-rouge">training_step</code></strong> has <strong><code class="language-plaintext highlighter-rouge">on_step=True</code></strong></li>
+  <li>Logging in <strong><code class="language-plaintext highlighter-rouge">validation_step</code></strong> has <strong><code class="language-plaintext highlighter-rouge">on_step=False</code></strong>, <strong><code class="language-plaintext highlighter-rouge">on_epoch=True</code></strong></li>
+</ul>
+
+<p>더 자세한 내용은 <a href="https://pytorch-lightning.readthedocs.io/en/latest/extensions/logging.html#automatic-logging">!여기!</a></p>
+
+<p>다시 돌아와서 어떻게 메트릭이 계산되고 로그를 남기는지 확인해보겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">training_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">forward</span><span class="p">(</span>
+        <span class="n">batch</span><span class="p">[</span><span class="s">"input_ids"</span><span class="p">],</span> <span class="n">batch</span><span class="p">[</span><span class="s">"attention_mask"</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s">"label"</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="c1"># loss = F.cross_entropy(logits, batch["label"])
+</span>    <span class="n">preds</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">outputs</span><span class="p">.</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">train_acc</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">train_accuracy_metric</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">batch</span><span class="p">[</span><span class="s">"label"</span><span class="p">])</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"train/loss"</span><span class="p">,</span> <span class="n">outputs</span><span class="p">.</span><span class="n">loss</span><span class="p">,</span> <span class="n">prog_bar</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">on_epoch</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"train/acc"</span><span class="p">,</span> <span class="n">train_acc</span><span class="p">,</span> <span class="n">prog_bar</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">on_epoch</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">outputs</span><span class="p">.</span><span class="n">loss</span>
+</code></pre></div></div>
+
+<p>on_epoch=True가 활성화되어 있으므로 W&amp;B 🏋️의 플롯에는 train/loss_step, train/loss_epoch 및 train/acc_step, train/acc_epoch가 있습니다.</p>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/56170880-dcb2-4414-9c6a-252b5cd6f1d7/Untitled.png" alt="Untitled" /></p>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/821c85b1-e78e-4508-b01a-0b7ced831ba6/Untitled.png" alt="Untitled" /></p>
+
+<p>검증하는 동안 Precision, Recall, F1과 같은 더 많은 메트릭을 모니터링할 수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'''
+__init__(self, model ..., lr=3e-5):
+...
+...
+...
+self.train_accuracy_metric = torchmetrics.Accuracy()
+self.val_accuracy_metric = torchmetrics.Accuracy()
+self.f1_metric = torchmetrics.F1(num_classes=self.num_classes)
+self.precision_macro_metric = torchmetrics.Precision(
+            average="macro", num_classes=self.num_classes
+        )
+self.recall_macro_metric = torchmetrics.Recall(
+            average="macro", num_classes=self.num_classes
+        )
+self.precision_micro_metric = torchmetrics.Precision(average="micro")
+self.recall_micro_metric = torchmetrics.Recall(average="micro")
+'''</span>
+
+<span class="k">def</span> <span class="nf">validation_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="s">"label"</span><span class="p">]</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">forward</span><span class="p">(</span>
+        <span class="n">batch</span><span class="p">[</span><span class="s">"input_ids"</span><span class="p">],</span> <span class="n">batch</span><span class="p">[</span><span class="s">"attention_mask"</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s">"label"</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">outputs</span><span class="p">.</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Metrics
+</span>    <span class="n">valid_acc</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">val_accuracy_metric</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+    <span class="n">precision_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">precision_macro_metric</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+    <span class="n">recall_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">recall_macro_metric</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+    <span class="n">precision_micro</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">precision_micro_metric</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+    <span class="n">recall_micro</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">recall_micro_metric</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">f1_metric</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+    <span class="c1"># Logging metrics
+</span>    <span class="bp">self</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"valid/loss"</span><span class="p">,</span> <span class="n">outputs</span><span class="p">.</span><span class="n">loss</span><span class="p">,</span> <span class="n">prog_bar</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">on_step</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"valid/acc"</span><span class="p">,</span> <span class="n">valid_acc</span><span class="p">,</span> <span class="n">prog_bar</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"valid/precision_macro"</span><span class="p">,</span> <span class="n">precision_macro</span><span class="p">,</span> <span class="n">prog_bar</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"valid/recall_macro"</span><span class="p">,</span> <span class="n">recall_macro</span><span class="p">,</span> <span class="n">prog_bar</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"valid/precision_micro"</span><span class="p">,</span> <span class="n">precision_micro</span><span class="p">,</span> <span class="n">prog_bar</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"valid/recall_micro"</span><span class="p">,</span> <span class="n">recall_micro</span><span class="p">,</span> <span class="n">prog_bar</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"valid/f1"</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">prog_bar</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"labels"</span><span class="p">:</span> <span class="n">labels</span><span class="p">,</span> <span class="s">"logits"</span><span class="p">:</span> <span class="n">outputs</span><span class="p">.</span><span class="n">logits</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6c62f5d0-bac8-40d7-ba5f-37afed4eb338/Untitled.png" alt="Untitled" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">validation_step</code> 동안 반환된 값은 <code class="language-plaintext highlighter-rouge">validation_epoch_end</code>에서 집계될 수 있으며 이를 사용하여 모든 변환을 수행할 수 있습니다.</p>
+
+<p>예를 들어 위의 코드 조각 레이블에 표시된 것처럼 logit이 반환됩니다.
+이 값은 <code class="language-plaintext highlighter-rouge">validation_epoch_end</code> 메서드에서 집계될 수 있으며 혼동 행렬과 같은 메트릭을 계산할 수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">validation_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outputs</span><span class="p">):</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">cat</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="s">"labels"</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">])</span> <span class="c1"># 정답
+</span>    <span class="n">logits</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">cat</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="s">"logits"</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">])</span> <span class="c1"># 예측한 logit
+</span>    <span class="n">preds</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># argmax를 통해 제일 높은 확률을 가진 값을 반환
+</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">labels</span><span class="p">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">preds</span><span class="p">.</span><span class="n">numpy</span><span class="p">())</span>
+</code></pre></div></div>
+
+<h1 id="adding-plots-to">📈<strong>Adding Plots to</strong></h1>
+
+<p>Logging Metrics은 충분하지 않을 수 있습니다. 그래프 및 플롯과 같은 시각적 정보가 많을수록 모델 성능을 더 잘 이해하는 데 도움이 됩니다.
+그래프를 그리는 방법은 여러 가지가 있습니다. 몇 가지 방법을 살펴보겠습니다.</p>
+
+<p><strong><a href="https://docs.wandb.ai/guides/track/log#custom-charts">Document</a></strong>
+예를 들어 위에서 계산한 Confusion_matrix를 그리는 방법을 살펴보겠습니다.</p>
+
+<h2 id="metchod-1">Metchod 1</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1. Confusion matrix plotting using inbuilt W&amp;B method
+</span><span class="bp">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="n">experiment</span><span class="p">.</span><span class="n">log</span><span class="p">(</span>
+    <span class="p">{</span>
+<span class="c1"># wandb.plot.scatter&amp;bar&amp;line_series&amp;line&amp;histogram&amp;roc_curve 등등
+</span>        <span class="s">"conf"</span><span class="p">:</span> <span class="n">wandb</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">confusion_matrix</span><span class="p">(</span>
+            <span class="n">probs</span><span class="o">=</span><span class="n">logits</span><span class="p">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">y_true</span><span class="o">=</span><span class="n">labels</span><span class="p">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7afff83e-c301-4792-8828-dae0d2f66927/Untitled.png" alt="Untitled" /></p>
+
+<h2 id="metchod-2">Metchod 2</h2>
+
+<p>또한, 문서를 읽던 중에 기존에 저희가 사용하던 <code class="language-plaintext highlighter-rouge">matplotlib</code>나 <code class="language-plaintext highlighter-rouge">plotly</code>와도 같이 사용할 수 있는 것을 확인했습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"some interesting numbers"</span><span class="p">)</span>
+<span class="n">wandb</span><span class="p">.</span><span class="n">log</span><span class="p">({</span><span class="s">"chart"</span><span class="p">:</span> <span class="n">plt</span><span class="p">})</span>
+</code></pre></div></div>
+
+<p>단순하게 matplotlib의 figure object를 wandb.log에 넣어 주시면 됩니다.
+만약 <code class="language-plaintext highlighter-rouge">“You attempted to log an empty plot”</code> 같은 에러를 만나셨다면 <code class="language-plaintext highlighter-rouge">fig= plt.figure()</code> 에 넣어 주신 다음에 진행하시면 됩니다.</p>
+
+<p>또는</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 3. Confusion Matric plotting using Seaborn
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">labels</span><span class="p">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">preds</span><span class="p">.</span><span class="n">numpy</span><span class="p">())</span>
+<span class="n">df_cm</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+<span class="n">df_cm</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Actual"</span>
+<span class="n">df_cm</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Predicted"</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">df_cm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">"Blues"</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s">"size"</span><span class="p">:</span> <span class="mi">16</span><span class="p">}</span>
+<span class="p">)</span>  <span class="c1"># font size
+</span><span class="bp">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="n">experiment</span><span class="p">.</span><span class="n">log</span><span class="p">({</span><span class="s">"Confusion Matrix"</span><span class="p">:</span> <span class="n">wandb</span><span class="p">.</span><span class="n">Image</span><span class="p">(</span><span class="n">plot</span><span class="p">)})</span>
+</code></pre></div></div>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bbd9820f-5be8-4e47-b313-5ad5cd505e2d/Untitled.png" alt="Untitled" /></p>
+
+<h2 id="metchod-3">Metchod 3</h2>
+
+<p><code class="language-plaintext highlighter-rouge">matplotlib</code> 뿐만 아니라 <code class="language-plaintext highlighter-rouge">scikit-learn</code>도 지원해준다고 합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 2. Confusion Matrix plotting using scikit-learn method
+</span><span class="n">wandb</span><span class="p">.</span><span class="n">log</span><span class="p">({</span><span class="s">"cm"</span><span class="p">:</span> <span class="n">wandb</span><span class="p">.</span><span class="n">sklearn</span><span class="p">.</span><span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">labels</span><span class="p">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">preds</span><span class="p">)})</span>
+</code></pre></div></div>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82d05491-0be5-4910-a81a-c9a3d9e54c92/Untitled.png" alt="Untitled" /></p>
+
+<h1 id="adding-data-samples-to">📑<strong>Adding Data samples to</strong></h1>
+
+<p>모델이 학습되면 모델이 잘 수행되는 부분과 그렇지 않은 부분을 이해해야 합니다.
+우리는 <code class="language-plaintext highlighter-rouge">cola</code> 문제에 대해 작업 중이므로 모델이 잘 수행되지 않는 몇 가지 샘플을 보고 W&amp;B에 기록해 보겠습니다.</p>
+
+<p>데이터를 플로팅하는 방법에는 여러 가지가 있을 수 있습니다.</p>
+
+<p>자세한 내용은 여기에서 <a href="https://docs.wandb.ai/guides/data-vis/tables-quickstart#1-log-a-table">문서</a>를 참조하십시오.</p>
+
+<p>이것은 ⚡️에서 콜백 🔁 메커니즘을 통해 달성할 수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SamplesVisualisationLogger</span><span class="p">(</span><span class="n">pl</span><span class="p">.</span><span class="n">Callback</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datamodule</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">datamodule</span> <span class="o">=</span> <span class="n">datamodule</span>
+
+    <span class="k">def</span> <span class="nf">on_validation_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trainer</span><span class="p">,</span> <span class="n">pl_module</span><span class="p">):</span>
+        <span class="c1"># can be done on complete dataset also
+</span>        <span class="n">val_batch</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">datamodule</span><span class="p">.</span><span class="n">val_dataloader</span><span class="p">()))</span>
+        <span class="n">sentences</span> <span class="o">=</span> <span class="n">val_batch</span><span class="p">[</span><span class="s">"sentence"</span><span class="p">]</span>
+
+        <span class="c1"># get the predictions
+</span>        <span class="n">outputs</span> <span class="o">=</span> <span class="n">pl_module</span><span class="p">(</span><span class="n">val_batch</span><span class="p">[</span><span class="s">"input_ids"</span><span class="p">],</span> <span class="n">val_batch</span><span class="p">[</span><span class="s">"attention_mask"</span><span class="p">])</span>
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">outputs</span><span class="p">.</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">val_batch</span><span class="p">[</span><span class="s">"label"</span><span class="p">]</span>
+
+        <span class="c1"># predicted and labelled data
+</span>        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="p">{</span><span class="s">"Sentence"</span><span class="p">:</span> <span class="n">sentences</span><span class="p">,</span> <span class="s">"Label"</span><span class="p">:</span> <span class="n">labels</span><span class="p">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="s">"Predicted"</span><span class="p">:</span> <span class="n">preds</span><span class="p">.</span><span class="n">numpy</span><span class="p">()}</span>
+        <span class="p">)</span>
+
+        <span class="c1"># wrongly predicted data
+</span>        <span class="n">wrong_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">"Label"</span><span class="p">]</span> <span class="o">!=</span> <span class="n">df</span><span class="p">[</span><span class="s">"Predicted"</span><span class="p">]]</span>
+
+        <span class="c1"># Logging wrongly predicted dataframe as a table
+</span>        <span class="n">trainer</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="n">experiment</span><span class="p">.</span><span class="n">log</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s">"examples"</span><span class="p">:</span> <span class="n">wandb</span><span class="p">.</span><span class="n">Table</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">wrong_df</span><span class="p">,</span> <span class="n">allow_mixed_types</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+                <span class="s">"global_step"</span><span class="p">:</span> <span class="n">trainer</span><span class="p">.</span><span class="n">global_step</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+</code></pre></div></div>
+
+<p>그리고 나서 콜백🔁을 넣어 줍니다!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="p">.</span><span class="n">Trainer</span><span class="p">(</span>
+        <span class="n">max_epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">logger</span><span class="o">=</span><span class="n">wandb_logger</span><span class="p">,</span>
+        <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">checkpoint_callback</span><span class="p">,</span> <span class="n">SamplesVisualisationLogger</span><span class="p">(</span><span class="n">cola_data</span><span class="p">)],</span>
+        <span class="n">log_every_n_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">deterministic</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/baff1c86-e375-4ee3-a8c0-12761ef8920e/Untitled.png" alt="Untitled" /></p>
+
+<h1><strong>🔚</strong></h1>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="elephantoid/elefunt-devlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/elefunt-devlog/2021/12/30/MLOps_week1.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/elefunt-devlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/elefunt-devlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This is development blog for ML/DL.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" target="_blank" title="fastai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" target="_blank" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
