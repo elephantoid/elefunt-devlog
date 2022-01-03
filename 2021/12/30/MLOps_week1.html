@@ -120,9 +120,9 @@ window.onload = wrap_img;
 <blockquote>
   <p>실행환경: Colab</p>
 
-  <p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4e18ed11-9df2-4ba3-81f4-6cee5669fa0a/Untitled.png" alt="Untitled" /></p>
+  <p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4e18ed11-9df2-4ba3-81f4-6cee5669fa0a/Untitled.png" alt="image" /></p>
 
-  <p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/748ae28e-97fd-4703-acfa-f0990eba00de/Untitled.png" alt="Untitled" /></p>
+  <p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/748ae28e-97fd-4703-acfa-f0990eba00de/Untitled.png" alt="image" /></p>
 </blockquote>
 
 <h1 id="ml-모델-모니터링-모델을-모니터링-해야-하는-이유는-무엇인가요">ML 모델 모니터링 모델을 모니터링 해야 하는 이유는 무엇인가요?</h1>
@@ -163,15 +163,15 @@ window.onload = wrap_img;
 
 <p>🔎<strong><a href="https://wandb.ai/authorize">https://wandb.ai/authorize</a></strong></p>
 
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5f871f00-0777-476b-b6cc-883d32ec6bb1/Untitled.png" alt="간편하게 Github을 통해 로그인했습니다." /></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5f871f00-0777-476b-b6cc-883d32ec6bb1/Untitled.png" alt="image" /></p>
 
 <p>간편하게 Github을 통해 로그인했습니다.</p>
 
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bb31a805-e91c-4399-835a-63e4d7a738fd/Untitled.png" alt="Untitled" /></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bb31a805-e91c-4399-835a-63e4d7a738fd/Untitled.png" alt="image" /></p>
 
 <p>로그인 하게 되면 바로 인증을 위한 키를 받을 수 있습니다.</p>
 
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a355c704-93f4-4c2a-b6a8-1a74e6cc7dc9/Untitled.png" alt="Untitled" /></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a355c704-93f4-4c2a-b6a8-1a74e6cc7dc9/Untitled.png" alt="image" /></p>
 
 <p><strong>인증을 위한 키를 여기에 넣으시면 됩니다!</strong></p>
 
@@ -201,14 +201,14 @@ window.onload = wrap_img;
 
 <hr />
 
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/72d03066-d450-4e05-a91f-a8783b6396cf/Untitled.png" alt="Untitled" /></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/72d03066-d450-4e05-a91f-a8783b6396cf/Untitled.png" alt="image" /></p>
 
 <p>PyCharm을 이용하시는 분들은 이렇게 하시면 됩니다.</p>
 
 <ol>
   <li>터미널에서 <code class="language-plaintext highlighter-rouge">wandb init</code> 으로 한 번 초기화 시키기</li>
   <li><code class="language-plaintext highlighter-rouge">(3) Create New</code> 옵션으로 레포 만들기</li>
-  <li><a href="http://train.py">train.py</a>에 <code class="language-plaintext highlighter-rouge">wandb.init(project="mlops-basics")</code> 추가하기</li>
+  <li>train.py에 <code class="language-plaintext highlighter-rouge">wandb.init(project="mlops-basics")</code> 추가하기</li>
 </ol>
 
 <h1 id="metrics">📐<strong>Metrics</strong></h1>
@@ -294,9 +294,9 @@ window.onload = wrap_img;
 
 <p>on_epoch=True가 활성화되어 있으므로 W&amp;B 🏋️의 플롯에는 train/loss_step, train/loss_epoch 및 train/acc_step, train/acc_epoch가 있습니다.</p>
 
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/56170880-dcb2-4414-9c6a-252b5cd6f1d7/Untitled.png" alt="Untitled" /></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/56170880-dcb2-4414-9c6a-252b5cd6f1d7/Untitled.png" alt="image" /></p>
 
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/821c85b1-e78e-4508-b01a-0b7ced831ba6/Untitled.png" alt="Untitled" /></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/821c85b1-e78e-4508-b01a-0b7ced831ba6/Untitled.png" alt="image" /></p>
 
 <p>검증하는 동안 Precision, Recall, F1과 같은 더 많은 메트릭을 모니터링할 수 있습니다.</p>
 
@@ -344,7 +344,7 @@ self.recall_micro_metric = torchmetrics.Recall(average="micro")
     <span class="k">return</span> <span class="p">{</span><span class="s">"labels"</span><span class="p">:</span> <span class="n">labels</span><span class="p">,</span> <span class="s">"logits"</span><span class="p">:</span> <span class="n">outputs</span><span class="p">.</span><span class="n">logits</span><span class="p">}</span>
 </code></pre></div></div>
 
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6c62f5d0-bac8-40d7-ba5f-37afed4eb338/Untitled.png" alt="Untitled" /></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6c62f5d0-bac8-40d7-ba5f-37afed4eb338/Untitled.png" alt="image" /></p>
 
 <p><code class="language-plaintext highlighter-rouge">validation_step</code> 동안 반환된 값은 <code class="language-plaintext highlighter-rouge">validation_epoch_end</code>에서 집계될 수 있으며 이를 사용하여 모든 변환을 수행할 수 있습니다.</p>
 
@@ -380,7 +380,7 @@ self.recall_micro_metric = torchmetrics.Recall(average="micro")
 <span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7afff83e-c301-4792-8828-dae0d2f66927/Untitled.png" alt="Untitled" /></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7afff83e-c301-4792-8828-dae0d2f66927/Untitled.png" alt="image" /></p>
 
 <h2 id="metchod-2">Metchod 2</h2>
 
@@ -410,7 +410,7 @@ self.recall_micro_metric = torchmetrics.Recall(average="micro")
 </span><span class="bp">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="n">experiment</span><span class="p">.</span><span class="n">log</span><span class="p">({</span><span class="s">"Confusion Matrix"</span><span class="p">:</span> <span class="n">wandb</span><span class="p">.</span><span class="n">Image</span><span class="p">(</span><span class="n">plot</span><span class="p">)})</span>
 </code></pre></div></div>
 
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bbd9820f-5be8-4e47-b313-5ad5cd505e2d/Untitled.png" alt="Untitled" /></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bbd9820f-5be8-4e47-b313-5ad5cd505e2d/Untitled.png" alt="image" /></p>
 
 <h2 id="metchod-3">Metchod 3</h2>
 
@@ -420,7 +420,7 @@ self.recall_micro_metric = torchmetrics.Recall(average="micro")
 </span><span class="n">wandb</span><span class="p">.</span><span class="n">log</span><span class="p">({</span><span class="s">"cm"</span><span class="p">:</span> <span class="n">wandb</span><span class="p">.</span><span class="n">sklearn</span><span class="p">.</span><span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">labels</span><span class="p">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">preds</span><span class="p">)})</span>
 </code></pre></div></div>
 
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82d05491-0be5-4910-a81a-c9a3d9e54c92/Untitled.png" alt="Untitled" /></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82d05491-0be5-4910-a81a-c9a3d9e54c92/Untitled.png" alt="image" /></p>
 
 <h1 id="adding-data-samples-to">📑<strong>Adding Data samples to</strong></h1>
 
@@ -477,7 +477,7 @@ self.recall_micro_metric = torchmetrics.Recall(average="micro")
     <span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/baff1c86-e375-4ee3-a8c0-12761ef8920e/Untitled.png" alt="Untitled" /></p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/baff1c86-e375-4ee3-a8c0-12761ef8920e/Untitled.png" alt="image" /></p>
 
 <h1><strong>🔚</strong></h1>
 
