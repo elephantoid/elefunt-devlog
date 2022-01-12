@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Pychonic : 효율적인 파이썬 코딩! | elefunt-devlog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Pychonic : 효율적인 파이썬 코딩!" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="어떻게 효율적인 코드를 작성할 수 있을까?" />
+<meta property="og:description" content="어떻게 효율적인 코드를 작성할 수 있을까?" />
+<link rel="canonical" href="https://elephantoid.github.io/elefunt-devlog/python/2022/01/12/Efficeint-Pythonic-code.html" />
+<meta property="og:url" content="https://elephantoid.github.io/elefunt-devlog/python/2022/01/12/Efficeint-Pythonic-code.html" />
+<meta property="og:site_name" content="elefunt-devlog" />
+<meta property="og:image" content="https://elephantoid.github.io/elefunt-devlog/images/eff-code.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-12T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"어떻게 효율적인 코드를 작성할 수 있을까?","url":"https://elephantoid.github.io/elefunt-devlog/python/2022/01/12/Efficeint-Pythonic-code.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://elephantoid.github.io/elefunt-devlog/python/2022/01/12/Efficeint-Pythonic-code.html"},"headline":"Pychonic : 효율적인 파이썬 코딩!","dateModified":"2022-01-12T00:00:00-06:00","datePublished":"2022-01-12T00:00:00-06:00","image":"https://elephantoid.github.io/elefunt-devlog/images/eff-code.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/elefunt-devlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://elephantoid.github.io/elefunt-devlog/feed.xml" title="elefunt-devlog" /><link rel="shortcut icon" type="image/x-icon" href="/elefunt-devlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/elefunt-devlog/">elefunt-devlog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/elefunt-devlog/about/">About Me</a><a class="page-link" href="/elefunt-devlog/gitInfo/">gitInfo</a><a class="page-link" href="/elefunt-devlog/search/">Search</a><a class="page-link" href="/elefunt-devlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Pychonic : 효율적인 파이썬 코딩!</h1><p class="page-description">어떻게 효율적인 코드를 작성할 수 있을까?</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-12T00:00:00-06:00" itemprop="datePublished">
+        Jan 12, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/elefunt-devlog/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/elephantoid/elefunt-devlog/tree/master/_notebooks/2022-01-12-Efficeint-Pythonic-code.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/elefunt-devlog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/elephantoid/elefunt-devlog/master?filepath=_notebooks%2F2022-01-12-Efficeint-Pythonic-code.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/elefunt-devlog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/elephantoid/elefunt-devlog/blob/master/_notebooks/2022-01-12-Efficeint-Pythonic-code.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/elefunt-devlog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-01-12-Efficeint-Pythonic-code.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>한창 알고리즘 문제들을 풀면서 제 코드를 다시 보면 너무 지저분하고 또 다른 분들의 숏코드를 보면 와.. 이걸 이렇게 할 수 있구나 싶었습니다. 그러다 <code>DataCamp</code> 의 Efficeint Code라는 수업을 들으며 배운 내용을 공유해보고자 합니다.</p>
+<h2 id="&#54952;&#50984;&#51201;&#51064;-&#53076;&#46300;&#46976;?">&#54952;&#50984;&#51201;&#51064; &#53076;&#46300;&#46976;?<a class="anchor-link" href="#&#54952;&#50984;&#51201;&#51064;-&#53076;&#46300;&#46976;?"> </a></h2><p>사실 효율적인 코드의 정의를 어떻게 내리느냐에 따라 앞으로의 내용이 많이 달라질 것 같습니다.
+가장 중요한 두가지가 있습니다.</p>
+<ol>
+<li>빠르고 최소 시간의 런타임(소요시간)</li>
+<li>최소의 resource를 활용하는 것</li>
+</ol>
+<p>파이썬에는 <code>Pythonic</code>한 코드를 작성하라는 팁이 있습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">this</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren&#39;t special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you&#39;re Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it&#39;s a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let&#39;s do more of those!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Beautiful is better than ugly. 아름다움이 추한 것보다 낫다.</p>
+<p>Explicit is better than implicit. 명확함이 함축된 것보다 낫다.</p>
+<p>Simple is better than complex. 단순함이 복잡한 것보다 낫다.</p>
+<p>Complex is better than complicated. 복잡함이 난해한 것보다 낫다.</p>
+<p>Flat is better than nested. 단조로움이 중접된 것보다 낫다.</p>
+<p>Sparse is better than dense. 여유로움이 밀집된 것보다 낫다.</p>
+<p>Readability counts. 가독성은 중요하다.</p>
+<p>Special cases aren't special enough to break the rules. 규칙을 깨야할 정도로 특별한 경우란 없다.<br />
+Although practicality beats purity. 비록 실용성이 이상을 능가한다 하더라도.</p>
+<p>Errors should never pass silently. 오류는 결코 조용히 지나가지 않는다. Unless explicitly silenced. 알고도 침묵하지 않는 한.</p>
+<p>In the face of ambiguity, refuse the temptation to guess. 모호함을 마주하고 추측하려는 유혹을 거절하라.<br />
+There should be one-- and preferably only one --obvious way to do it. 문제를 해결할 하나의 - 바람직하고 유일한 - 명백한 방법이 있을 것이다.<br />
+Although that way may not be obvious at first unless you're Dutch. 비록 당신이 우둔해서 처음에는 명백해 보이지 않을 수도 있겠지만.
+Now is better than never. 지금 하는 것이 전혀 안하는 것보다 낫다.<br />
+Although never is often better than right now. 비록 하지않는 것이 지금 하는 것보다 나을 때도 있지만.</p>
+<p>If the implementation is hard to explain, it's a bad idea. 설명하기 어려운 구현이라면 좋은 아이디어가 아니다.<br />
+If the implementation is easy to explain, it may be a good idea. 쉽게 설명할 수 있는 구현이라면 좋은 아이디어일 수 있다.<br />
+Namespaces are one honking great idea -- let's do more of those! 네임스페이스는 정말 대단한 아이디어다. -- 자주 사용하자!</p>
+<p>출처: <a href="https://wikidocs.net/7907">https://wikidocs.net/7907</a></p>
+<p>중요한 내용을 좀 추려보자면 중첩과 누락을 피하고 최대한 명확하고 읽기 쉬운 간단한 코드를 작성해야합니다.</p>
+<p>Bulit-in 함수: <code>print</code> <code>range</code> <code>len</code> <code>round</code> <code>enumerate</code> <code>map</code> <code>zip</code> 등이 있습니다.<br />
+Bulit-in 모듈: <code>os</code> <code>sys</code> <code>itertools</code> <code>collections</code> 등이 있습니다.</p>
+<p>이 과정에서 제가 배우면서 와닿았던 부분들이 있습니다.</p>
+<ol>
+<li>for loop을 남발하지 않고 List Comprehension을 통해 간결하게 만드는 것</li>
+<li>Numpy의 브로드 캐스팅을 활용하는 것</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>%timeit</code>을 통해 코드의 런타임을 알아볼 수 있습니다.</p>
+<ul>
+<li><code>-r</code> method : run  </li>
+<li><code>-n</code> method : loop</li>
+<li><code>-o</code> method : saving output to a variable</li>
+</ul>
+<p><code>%lsmagic</code>을 이용하면 모든 매직 커맨드를 확인해볼 수 있습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="o">%</span><span class="k">timeit</span> -r2 -n10 rand_nums = np.random.rand(1000)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>11.1 µs ± 2.84 µs per loop (mean ± std. dev. of 2 runs, 10 loops each)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">times</span> <span class="o">=</span> <span class="o">%</span><span class="k">timeit</span> -o rand_nums = np.random.rand(1000)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The slowest run took 10.20 times longer than the fastest. This could mean that an intermediate result is being cached.
+100000 loops, best of 5: 9.48 µs per loop
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">times</span><span class="o">.</span><span class="n">all_runs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">times</span><span class="o">.</span><span class="n">best</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">times</span><span class="o">.</span><span class="n">worst</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0.9632805540001073, 0.9514958920000254, 0.9509307729999819, 0.9479201429999193, 1.0195112180000478]
+9.479201429999193e-06
+9.669099995335273e-05
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이렇게 변수에 할당하여 내용을 확인할 수 있습니다.</p>
+<p>재밌게 읽었던 내용중에 <code>list()</code> 와 <code>[]</code> 중에 뭐가 더 빠를까? 에 대한 내용입니다.<br />
+어떤 방법이 더 빠를까요? 이름을 명시하는 것보다 <code>[]</code>와 같이 literal 구문을 이용하는 것이 더 빠릅니다. 한 번 해보세요!</p>
+<h2 id="Code-Profiling-:-Time">Code Profiling : Time<a class="anchor-link" href="#Code-Profiling-:-Time"> </a></h2><p>좀 더 자세한 내용과 각 라인 별로 보고 싶을 수도 있잖아요? 그리고 %timeit을 사용하면 1 라인만 확인할 수 있어요. 저희는 <code>def</code>를 이용해 함수를 정의해서 많이 사용하기 때문에 라인별로 어디에서 시간이 오래걸리는지 알 필요가 있습니다.
+<code>pip install line_profiler</code>를 이용해 설치해주세요</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install line_profiler
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Collecting line_profiler
+  Downloading line_profiler-3.4.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (66 kB)
+     |████████████████████████████████| 66 kB 2.4 MB/s 
+Requirement already satisfied: IPython&gt;=0.13 in /usr/local/lib/python3.7/dist-packages (from line_profiler) (5.5.0)
+Requirement already satisfied: prompt-toolkit&lt;2.0.0,&gt;=1.0.4 in /usr/local/lib/python3.7/dist-packages (from IPython&gt;=0.13-&gt;line_profiler) (1.0.18)
+Requirement already satisfied: traitlets&gt;=4.2 in /usr/local/lib/python3.7/dist-packages (from IPython&gt;=0.13-&gt;line_profiler) (5.1.1)
+Requirement already satisfied: decorator in /usr/local/lib/python3.7/dist-packages (from IPython&gt;=0.13-&gt;line_profiler) (4.4.2)
+Requirement already satisfied: pexpect in /usr/local/lib/python3.7/dist-packages (from IPython&gt;=0.13-&gt;line_profiler) (4.8.0)
+Requirement already satisfied: pygments in /usr/local/lib/python3.7/dist-packages (from IPython&gt;=0.13-&gt;line_profiler) (2.6.1)
+Requirement already satisfied: pickleshare in /usr/local/lib/python3.7/dist-packages (from IPython&gt;=0.13-&gt;line_profiler) (0.7.5)
+Requirement already satisfied: simplegeneric&gt;0.8 in /usr/local/lib/python3.7/dist-packages (from IPython&gt;=0.13-&gt;line_profiler) (0.8.1)
+Requirement already satisfied: setuptools&gt;=18.5 in /usr/local/lib/python3.7/dist-packages (from IPython&gt;=0.13-&gt;line_profiler) (57.4.0)
+Requirement already satisfied: six&gt;=1.9.0 in /usr/local/lib/python3.7/dist-packages (from prompt-toolkit&lt;2.0.0,&gt;=1.0.4-&gt;IPython&gt;=0.13-&gt;line_profiler) (1.15.0)
+Requirement already satisfied: wcwidth in /usr/local/lib/python3.7/dist-packages (from prompt-toolkit&lt;2.0.0,&gt;=1.0.4-&gt;IPython&gt;=0.13-&gt;line_profiler) (0.2.5)
+Requirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.7/dist-packages (from pexpect-&gt;IPython&gt;=0.13-&gt;line_profiler) (0.7.0)
+Installing collected packages: line-profiler
+Successfully installed line-profiler-3.4.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">convert_units</span><span class="p">(</span><span class="n">herose</span><span class="p">,</span> <span class="n">hts</span><span class="p">,</span> <span class="n">wts</span><span class="p">):</span>
+
+  <span class="n">new_hts</span> <span class="o">=</span><span class="p">[</span><span class="n">ht</span> <span class="o">*</span> <span class="mf">0.39370</span> <span class="k">for</span> <span class="n">ht</span> <span class="ow">in</span> <span class="n">hts</span><span class="p">]</span>
+  <span class="n">new_wts</span> <span class="o">=</span><span class="p">[</span><span class="n">wt</span> <span class="o">*</span> <span class="mf">2.20462</span> <span class="k">for</span> <span class="n">wt</span> <span class="ow">in</span> <span class="n">wts</span><span class="p">]</span>
+
+  <span class="n">hero_data</span> <span class="o">=</span> <span class="p">{}</span>
+  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">hero</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">herose</span><span class="p">):</span>
+    <span class="n">hero_data</span><span class="p">[</span><span class="n">hero</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">new_hts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">new_wts</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+  
+  <span class="k">return</span> <span class="n">hero_data</span>
+  
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">convert_units</span><span class="p">(</span><span class="n">heroes</span><span class="p">,</span> <span class="n">hts</span><span class="p">,</span> <span class="n">wts</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;Batman&#39;: (74.01559999999999, 209.4389),
+ &#39;Superman&#39;: (75.19669999999999, 222.66661999999997),
+ &#39;Wonder Woman&#39;: (72.0471, 163.14188)}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> line_profiler
+<span class="c1"># 나 이제 라인 프로파일러 사용할거야 하고 알려줍니다</span>
+
+<span class="o">%</span><span class="k">lprun</span> -f
+<span class="c1"># 함수를 볼거야 하고 알려줍니다.</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> line_profiler
+<span class="o">%</span><span class="k">lprun</span> -f convert_units
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The line_profiler extension is already loaded. To reload it, use:
+  %reload_ext line_profiler
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="data:image/png;base64,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" alt="image.png" /></p>
+<p>이렇게 보면 그냥 잘모르겠죠.. 값을 넣어줍니다
+식은 <code>%lprun -f 함수명 함수명(값)</code> 입니다</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> line_profiler
+<span class="o">%</span><span class="k">lprun</span> -f convert_units convert_units(heroes, hts, wts)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="data:image/png;base64,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" alt="image.png" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이제 확실히 알수 있겠죠?<br />
+각 라인이 몇번 실행 됐는지<br />
+어느 라인에서 시간이 오래걸렸고(%)<br />
+그 라인이 어느 구문인지 알 수 있습니다.</p>
+<h2 id="Code-profiling-:-Memory">Code profiling : Memory<a class="anchor-link" href="#Code-profiling-:-Memory"> </a></h2><p>시간을 확인해봤으니 이제 리소스를 얼마나 잡아먹고 있나 확인해보겠습니다.</p>
+<p><code>pip install memory_profiler</code>해주세요.
+방법은 위와 동일합니다!</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install memory_profiler
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Collecting memory_profiler
+  Downloading memory_profiler-0.60.0.tar.gz (38 kB)
+Requirement already satisfied: psutil in /usr/local/lib/python3.7/dist-packages (from memory_profiler) (5.4.8)
+Building wheels for collected packages: memory-profiler
+  Building wheel for memory-profiler (setup.py) ... done
+  Created wheel for memory-profiler: filename=memory_profiler-0.60.0-py3-none-any.whl size=31285 sha256=8fca6dd0956c7d8db0c21bd2b1fd3a3cd5d968f8a7ffb1a2142c140ff0a2d516
+  Stored in directory: /root/.cache/pip/wheels/67/2b/fb/326e30d638c538e69a5eb0aa47f4223d979f502bbdb403950f
+Successfully built memory-profiler
+Installing collected packages: memory-profiler
+Successfully installed memory-profiler-0.60.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> memory_profiler
+<span class="o">%</span><span class="k">mprun</span> -f convert_units convert_units(heroes, hts, wts)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The memory_profiler extension is already loaded. To reload it, use:
+  %reload_ext memory_profiler
+ERROR: Could not find file &lt;ipython-input-15-c2659a0c0e8b&gt;
+NOTE: %mprun can only be used on functions defined in physical files, and not in the IPython environment.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>%mprun can only be used on functions defined in physical files, and not in the IPython environment</code></p>
+<p>아아... 제가 현재 코랩환경에서 하고 있어서 못보여드리네요..😥😥<br />
+파이참이나 Ipython 환경이 아니신 분들은 한 번 해보세요 <code>MiB</code> 기준으로 이전행과 얼만큼의 메모리를 사용하고 있는지 알 수 있습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Combining,-Counting,-iterating">Combining, Counting, iterating<a class="anchor-link" href="#Combining,-Counting,-iterating"> </a></h1><p>간단하게 작은 데이터셋을 이용하여 설명하도록 하겠습니다.<br />
+아래 1번 코드는 제가 그냥 코딩을 한 것입니다.<br />
+2번은 <code>zip</code>이라는 함수를 사용하여 더 간편하게 바꿀 수 있습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;피카츄&#39;</span><span class="p">,</span> <span class="s1">&#39;파이리&#39;</span><span class="p">,</span> <span class="s1">&#39;꼬북이&#39;</span><span class="p">]</span>
+<span class="n">hps</span> <span class="o">=</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">44</span><span class="p">]</span>
+
+<span class="n">combined</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="p">,</span> <span class="n">pokemon</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+  <span class="n">combined</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">pokemon</span><span class="p">,</span> <span class="n">hps</span><span class="p">[</span><span class="n">idx</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[(&#39;피카츄&#39;, 45), (&#39;파이리&#39;, 39), (&#39;꼬북이&#39;, 44)]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">combined_zip</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">hps</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[(&#39;피카츄&#39;, 45), (&#39;파이리&#39;, 39), (&#39;꼬북이&#39;, 44)]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이외에도 다양한 함수들이 있습니다.<br />
+namedtuple : tuple subclasses with named fields<br />
+deque : list-like container with fast appends and pops<br />
+Counter : dict for counting hashable objects<br />
+OrderedDict : dict that retains order of entries<br />
+defaultdict : dict that calls a factory function to supply missing values 
+deque : list-like container with fast appends and pops</p>
+<p>모두 다 실습해 볼 수는 없으니 양해를 부탁드립니다 🤕</p>
+<p>예를 들어, 각각의 아이템이 총 몇개씩 들어가 있는지 궁금할 때가 있습니다.<br />
+가끔 코딩 테스트를 준비하며 백준 온라인 저지에 있는 문제를 풀다 보면 나오는 문제기도 합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">types</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Counter({&#39;Water&#39;: 66, &#39;Normal&#39;: 64, &#39;Bug&#39;: 51, &#39;Grass&#39;: 47, &#39;Psychic&#39;: 31, &#39;Rock&#39;: 29, &#39;Fire&#39;: 27, &#39;Electric&#39;: 25, &#39;Ground&#39;: 23, &#39;Fighting&#39;: 23, &#39;Poison&#39;: 22, &#39;Steel&#39;: 18, &#39;Ice&#39;: 16, &#39;Fairy&#39;: 16, &#39;Dragon&#39;: 16, &#39;Ghost&#39;: 13, &#39;Dark&#39;: 13})
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>collections에는 이 뿐만 아니라 아래의 함수들도 제공하고 있습니다.<br />
+저 같은 경우는 경우의 수 조합을 구할 때 <code>combinations</code> 함수를 자주 이용하곤 했습니다.</p>
+<ul>
+<li>Innite iterators: count , cycle , repeat</li>
+<li>Finite iterators: accumulate , chain , zip_
+longest , etc.</li>
+<li>Combination generators: product , permutations , combinations</li>
+</ul>
+<hr />
+<p>또 중복제거에 탁월한 <code>set</code> 함수도 있습니다.<br />
+그런데 여기에 SQL에서 사용했던 JOIN과 비슷한 역할을 해주는 메소드가 있습니다.</p>
+<p>| 해당 메소드는 Set type에서만 사용 가능합니다.</p>
+<ul>
+<li>intersection() : all elements that are in both sets / 교집합</li>
+<li>difference() : all elements in one set but not the other / A </li>
+<li>symmetric_difference() : all elements in exactly one set/ A - AnB</li>
+<li>union() : all elements that are in either set / 합집합</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Loop-&#51228;&#44144;&#54616;&#44592;">Loop &#51228;&#44144;&#54616;&#44592;<a class="anchor-link" href="#Loop-&#51228;&#44144;&#54616;&#44592;"> </a></h1><p><code>for</code>와 <code>while</code>는 정말 자주 사용하기도 하고 안쓸려고해도 안쓸수가 없습니다. 그래도 최대한 쓰지 않아도 될 때는 대체하는 것이 Pytonic한 코드라고 할 수 있습니다.<br />
+3가지 방법으로 비교해볼려고 합니다.</p>
+<ol>
+<li>for loop</li>
+<li>List Comprehension</li>
+<li>Built-in map() funtion</li>
+</ol>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>it
+<span class="n">totals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">poke_stats</span><span class="p">:</span>
+  <span class="n">totals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>100000 loops, best of 5: 11.1 µs per loop
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> totals_comp = [sum(row) for row in poke_stats]
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>100000 loops, best of 5: 8.65 µs per loop
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> totals_map = [*map(sum, poke_stats)]
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>100000 loops, best of 5: 6.32 µs per loop
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>결과가 보이시나요?? 이렇게 시간을 단축 시킬 수 있습니다 ✈</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="elephantoid/elefunt-devlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/elefunt-devlog/python/2022/01/12/Efficeint-Pythonic-code.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/elefunt-devlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/elefunt-devlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This is development blog for ML/DL.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" target="_blank" title="fastai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" target="_blank" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
