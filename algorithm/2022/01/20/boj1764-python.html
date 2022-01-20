@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>BOJ 1764 Python 문제풀이 | elefunt-devlog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="BOJ 1764 Python 문제풀이" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Algorithm" />
+<meta property="og:description" content="Algorithm" />
+<link rel="canonical" href="https://elephantoid.github.io/elefunt-devlog/algorithm/2022/01/20/boj1764-python.html" />
+<meta property="og:url" content="https://elephantoid.github.io/elefunt-devlog/algorithm/2022/01/20/boj1764-python.html" />
+<meta property="og:site_name" content="elefunt-devlog" />
+<meta property="og:image" content="https://elephantoid.github.io/elefunt-devlog/images/algorithm_python.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-20T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"Algorithm","url":"https://elephantoid.github.io/elefunt-devlog/algorithm/2022/01/20/boj1764-python.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://elephantoid.github.io/elefunt-devlog/algorithm/2022/01/20/boj1764-python.html"},"headline":"BOJ 1764 Python 문제풀이","dateModified":"2022-01-20T00:00:00-06:00","datePublished":"2022-01-20T00:00:00-06:00","image":"https://elephantoid.github.io/elefunt-devlog/images/algorithm_python.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/elefunt-devlog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://elephantoid.github.io/elefunt-devlog/feed.xml" title="elefunt-devlog" /><link rel="shortcut icon" type="image/x-icon" href="/elefunt-devlog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/elefunt-devlog/">elefunt-devlog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/elefunt-devlog/about/">About Me</a><a class="page-link" href="/elefunt-devlog/gitInfo/">gitInfo</a><a class="page-link" href="/elefunt-devlog/search/">Search</a><a class="page-link" href="/elefunt-devlog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">BOJ 1764 Python 문제풀이</h1><p class="page-description">Algorithm</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-20T00:00:00-06:00" itemprop="datePublished">
+        Jan 20, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/elefunt-devlog/categories/#Algorithm">Algorithm</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Solved.ac Class [3]</p>
+
+<h1 id="실버-4-등급--듣보잡">실버 4 등급 : 듣보잡</h1>
+
+<h2 id="문제-설명">문제 설명</h2>
+
+<p>김진영이 듣도 못한 사람의 명단과, 보도 못한 사람의 명단이 주어질 때, 듣도 보도 못한 사람의 명단을 구하는 프로그램을 작성하시오.</p>
+
+<ol>
+  <li>첫째 줄에 듣도 못한 사람의 수 N, 보도 못한 사람의 수 M</li>
+  <li>둘째 줄부터 N만큼 듣지도 못한 사람</li>
+  <li>그 다음 M만큼 보지도 못한사람</li>
+</ol>
+
+<ul>
+  <li>중복 이름 없음</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td>출력은 사전순으로 출력</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="예제-입출력">예제 입출력</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>input
+
+3 4
+ohhenrie
+charlie
+baesangwook
+obama
+baesangwook
+ohhenrie
+clinton
+
+output
+
+2
+baesangwook
+ohhenrie
+</code></pre></div></div>
+
+<h2 id="문제-접근-방식">문제 접근 방식</h2>
+
+<p>문제를 보며 느낀점은 프로그래머스 Lv.1의 완주하지 못한 사람(? 맞는지 모르겠으나) 문제와 상당히 유사한 느낌이었습니다. 그래서 set함수를 사용하기로 했습니다.</p>
+
+<p>set은 list와 다르게 <code class="language-plaintext highlighter-rouge">add</code>라는 함수를 통해 업데이트를 해줍니다.
+set에는 <code class="language-plaintext highlighter-rouge">intersection</code>, union 등 다양한 연산자기능을 해주는 함수가 있습니다. 얼마전 효율적인 코딩에서도 다룬 내용이라 바로 적용해보기로 했습니다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><a href="!https://docs.python.org/ko/3.7/library/stdtypes.html#set">set 함수 docs</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>여기에서 intersection은 교집합의 기능을 해줍니다. 듣지도 못한 사람 중에 보지도 못한 사람이 있다면? 그 사람이 바로 듣보잡이 됩니다.</p>
+
+<p>제출을 했는데 계속 18%에서 실패했습니다. 그렇게 시간 까먹다가 문제를 다시 보니 사전순으로 출력..하 역시 문제를 잘 봐야합니다. 간단하게 sorted 함수를 사용 후 제출하니 바로 풀렸습니다.</p>
+
+<h2 id="문제-풀이">문제 풀이</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import sys
+n,m = map(int, sys.stdin.readline().split())
+
+a= set()
+b= set()
+for i in range(n):
+    a.add(sys.stdin.readline()[:-1])
+for j in range(m):
+    b.add(sys.stdin.readline()[:-1])
+
+answer = sorted(a.intersection(b))
+print(len(answer))
+for i in answer:
+    print(i)
+</code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="elephantoid/elefunt-devlog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/elefunt-devlog/algorithm/2022/01/20/boj1764-python.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/elefunt-devlog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/elefunt-devlog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This is development blog for ML/DL.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" target="_blank" title="fastai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" target="_blank" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/elefunt-devlog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
